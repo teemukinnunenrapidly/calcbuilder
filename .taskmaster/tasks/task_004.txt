@@ -3,9 +3,59 @@
 # Status: pending
 # Dependencies: 1
 # Priority: high
-# Description: Set up authentication system using Supabase Auth with email/password and social login options.
+# Description: Set up authentication system using Supabase Auth with email/password and configure Resend for email delivery.
 # Details:
-Configure Supabase Auth with email/password authentication. Add social login providers (Google, GitHub) for convenience. Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD.
+Configure Supabase Auth with email/password authentication. Set up Resend email service integration for transactional emails. Create Resend account and obtain API key. Configure Supabase to use Resend as the email provider through custom SMTP settings or Edge Functions. Set up email templates for authentication flows (verification, password reset, welcome emails). Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD. Configure email sender domain and verify DNS records for email deliverability.
 
 # Test Strategy:
-Test user registration with email verification. Verify login functionality with both email/password and social providers. Test password reset flow. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates.
+Test user registration with email verification - confirm email is received via Resend. Verify login functionality with email/password. Test password reset flow and confirm reset email delivery. Verify email templates render correctly with proper branding. Test email deliverability and check spam scores. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates. Monitor Resend dashboard for email delivery success rates. Test email sending in both development (using Resend test mode) and production environments.
+
+# Subtasks:
+## 1. Setup Supabase Auth Configuration [pending]
+### Dependencies: None
+### Description: Configure Supabase Auth with email/password authentication and basic settings
+### Details:
+Initialize Supabase Auth in the project. Configure authentication settings for email/password. Set up basic user roles and permissions. Test basic authentication flow with Supabase dashboard.
+
+## 2. Setup Resend Email Service Integration [pending]
+### Dependencies: None
+### Description: Configure Resend email service for transactional emails
+### Details:
+Create Resend account and obtain API key. Configure environment variables for Resend. Set up basic email sending functionality. Test email delivery in development environment. Configure email sender domain and verify DNS records.
+
+## 3. Integrate Supabase Auth with Resend [pending]
+### Dependencies: None
+### Description: Connect Supabase Auth to use Resend for email delivery
+### Details:
+Configure Supabase to use Resend as email provider through custom SMTP settings or Edge Functions. Set up email templates for authentication flows (verification, password reset, welcome emails). Test email delivery through Supabase Auth triggers.
+
+## 4. Create React Authentication Context [pending]
+### Dependencies: None
+### Description: Implement authentication state management using React Context
+### Details:
+Create React context for authentication state management. Implement user state, login/logout functions, and authentication status. Create custom hooks for authentication. Set up JWT token handling and refresh logic.
+
+## 5. Create Authentication UI Pages [pending]
+### Dependencies: None
+### Description: Build login, registration, password reset, and email verification pages
+### Details:
+Create responsive UI pages for authentication: login form, registration form, password reset form, and email verification page. Use shadcn/ui components for consistent design. Implement form validation with React Hook Form and Zod. Add proper error handling and success messages.
+
+## 6. Implement Protected Routes and Middleware [pending]
+### Dependencies: None
+### Description: Create route protection and authentication middleware
+### Details:
+Implement protected routes using Next.js middleware or React Router. Create authentication guards for protected pages. Set up redirect logic for unauthenticated users. Implement route-based access control.
+
+## 7. Implement User Profile Management [pending]
+### Dependencies: None
+### Description: Create user profile page and management functionality
+### Details:
+Create user profile page with editable fields. Implement profile update functionality. Add avatar/photo upload using Supabase Storage. Create user settings page for preferences. Implement profile data validation.
+
+## 8. Implement Role-Based Access Control (RBAC) [pending]
+### Dependencies: None
+### Description: Set up role-based access control for different user types
+### Details:
+Implement RBAC system for Platform Administrator and Client Administrator roles as defined in section 3 of the PRD. Create role-based component rendering. Implement permission-based UI elements. Set up role validation middleware. Test role-based access restrictions.
+

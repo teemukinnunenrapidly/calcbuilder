@@ -15,13 +15,59 @@
       {
         "id": 4,
         "title": "Implement Authentication with Supabase Auth",
-        "description": "Set up authentication system using Supabase Auth with email/password authentication.",
+        "description": "Set up authentication system using Supabase Auth with email/password and configure Resend for email delivery.",
         "status": "pending",
         "dependencies": [1],
         "priority": "high",
-        "details": "Configure Supabase Auth with email/password authentication. Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD.",
-        "testStrategy": "Test user registration with email verification. Verify login functionality with email/password. Test password reset flow. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates.",
-        "subtasks": []
+        "details": "Configure Supabase Auth with email/password authentication. Set up Resend email service integration for transactional emails. Create Resend account and obtain API key. Configure Supabase to use Resend as the email provider through custom SMTP settings or Edge Functions. Set up email templates for authentication flows (verification, password reset, welcome emails). Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD. Configure email sender domain and verify DNS records for email deliverability.",
+        "testStrategy": "Test user registration with email verification - confirm email is received via Resend. Verify login functionality with email/password. Test password reset flow and confirm reset email delivery. Verify email templates render correctly with proper branding. Test email deliverability and check spam scores. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates. Monitor Resend dashboard for email delivery success rates. Test email sending in both development (using Resend test mode) and production environments.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure Supabase Auth and Resend Integration",
+            "description": "Set up Supabase Auth with email/password authentication and integrate Resend for email delivery",
+            "dependencies": [],
+            "details": "Create Supabase project and configure Auth settings for email/password authentication. Create Resend account and obtain API key. Configure Supabase to use Resend as the email provider through custom SMTP settings or Edge Functions. Set up DNS records for email sender domain verification. Test the connection between Supabase and Resend.",
+            "status": "in-progress",
+            "testStrategy": "Verify Supabase Auth is properly configured with email/password option. Confirm Resend API key works by sending a test email. Validate DNS configuration for the sender domain. Test the integration by triggering a test authentication email."
+          },
+          {
+            "id": 2,
+            "title": "Create Authentication Email Templates",
+            "description": "Design and implement email templates for all authentication flows",
+            "dependencies": ["4.1"],
+            "details": "Create branded email templates for verification, password reset, and welcome emails. Implement templates in Resend or Supabase depending on the chosen integration method. Ensure templates include proper links back to the application with correct tokens. Add localization support for email content. Test email rendering across different email clients.",
+            "status": "pending",
+            "testStrategy": "Verify all email templates render correctly with proper branding. Test email template variables are correctly populated. Check email rendering in multiple email clients (Gmail, Outlook, etc.). Confirm all links in emails work correctly with proper token handling."
+          },
+          {
+            "id": 3,
+            "title": "Implement Authentication Context and State Management",
+            "description": "Create React context for authentication state management and JWT handling",
+            "dependencies": ["4.1"],
+            "details": "Create AuthContext and AuthProvider components to manage authentication state. Implement JWT token storage, validation, and refresh logic. Create hooks for accessing authentication state (useAuth). Implement session persistence across page refreshes. Add logout functionality with proper token cleanup. Create user profile data fetching and caching.",
+            "status": "pending",
+            "testStrategy": "Test authentication state is properly maintained across the application. Verify JWT tokens are correctly stored and refreshed. Test session persistence works after page refresh. Confirm logout properly clears all authentication data. Verify authentication hooks provide correct user data."
+          },
+          {
+            "id": 4,
+            "title": "Build Authentication UI Components",
+            "description": "Create login, registration, password reset, and email verification pages",
+            "dependencies": ["4.3"],
+            "details": "Design and implement UI components for login form with email/password fields. Create registration form with validation. Build password reset request and confirmation pages. Implement email verification page that handles verification tokens. Add form validation using Zod. Create loading and error states for all authentication forms. Ensure all forms are accessible and responsive.",
+            "status": "pending",
+            "testStrategy": "Test all authentication forms with valid and invalid inputs. Verify form validation provides appropriate error messages. Test responsive design on different screen sizes. Confirm accessibility standards are met. Verify loading and error states display correctly."
+          },
+          {
+            "id": 5,
+            "title": "Implement Protected Routes and Role-Based Access",
+            "description": "Create protected route system and role-based access control",
+            "dependencies": ["4.3", "4.4"],
+            "details": "Implement protected route components using React Router. Create role-based access control for different user types (Platform Administrator, Client Administrator). Implement redirect logic for unauthenticated or unauthorized users. Create permission checking utilities. Build user role management interface for platform administrators. Implement user profile management page with role information.",
+            "status": "pending",
+            "testStrategy": "Verify protected routes redirect unauthenticated users to login. Test role-based access control prevents unauthorized access. Confirm redirects work correctly after login. Test permission checking utilities with different user roles. Verify user profile management correctly displays and allows updating of permitted information."
+          }
+        ]
       },
       {
         "id": 5,
@@ -115,7 +161,7 @@
         "id": 13,
         "title": "Implement Lead Management System",
         "description": "Create the lead management system as specified in section 6.4.",
-        "details": "Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel. Implement basic CRM integration capabilities via webhooks.",
+        "details": "Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel using Resend email service. Implement basic CRM integration capabilities via webhooks.",
         "testStrategy": "Test lead capture from calculator submissions. Verify leads appear in the management interface. Test searching and filtering leads. Verify lead export to CSV/Excel works correctly. Test lead detail view displays all information. Verify email functionality correctly sends messages to leads. Test webhook integration with sample CRM system.",
         "priority": "high",
         "dependencies": [5, 10],
@@ -225,7 +271,7 @@
         "id": 23,
         "title": "Implement Support System",
         "description": "Create support system with in-app chat, email support, and community forum.",
-        "details": "Integrate chat support system (Intercom recommended). Implement email support ticket management. Create community forum for user discussions. Implement knowledge base integration with support systems. Create support request routing based on issue type. Implement support analytics for common issues and resolution times.",
+        "details": "Integrate chat support system (Intercom recommended). Implement email support ticket management using Resend email service. Create community forum for user discussions. Implement knowledge base integration with support systems. Create support request routing based on issue type. Implement support analytics for common issues and resolution times.",
         "testStrategy": "Test chat support integration appears correctly in the app. Verify email support tickets are created and managed properly. Test community forum functionality for posting and replying. Verify knowledge base integration suggests relevant articles. Test support request routing directs issues to appropriate channels.",
         "priority": "low",
         "dependencies": [6, 22],
@@ -325,7 +371,7 @@
     ],
     "metadata": {
       "created": "2025-08-19T12:44:20.651Z",
-      "updated": "2025-08-19T17:09:53.549Z",
+      "updated": "2025-08-19T17:43:48.701Z",
       "description": "Tasks for master context"
     }
   }

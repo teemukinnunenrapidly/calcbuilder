@@ -5,7 +5,7 @@
 # Priority: low
 # Description: Create support system with in-app chat, email support, and community forum.
 # Details:
-Integrate chat support system (Intercom recommended). Implement email support ticket management. Create community forum for user discussions. Implement knowledge base integration with support systems. Create support request routing based on issue type. Implement support analytics for common issues and resolution times.
+Integrate chat support system (Intercom recommended). Implement email support ticket management using Resend email service. Create community forum for user discussions. Implement knowledge base integration with support systems. Create support request routing based on issue type. Implement support analytics for common issues and resolution times.
 
 # Test Strategy:
 Test chat support integration appears correctly in the app. Verify email support tickets are created and managed properly. Test community forum functionality for posting and replying. Verify knowledge base integration suggests relevant articles. Test support request routing directs issues to appropriate channels.

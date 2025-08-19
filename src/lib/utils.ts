@@ -101,6 +101,24 @@ export function toCamelCase(str: string): string {
     .replace(/\s+/g, '');
 }
 
+export function truncate(str: string, length: number): string {
+  if (str.length <= length) return str;
+  return `${str.slice(0, length)}...`;
+}
+
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -111,7 +129,19 @@ export function isValidPhoneNumber(phone: string): boolean {
   return phoneRegex.test(phone.replace(/\s/g, ''));
 }
 
-export function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text;
-  return `${text.substr(0, maxLength).trim()}...`;
+export function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export function retry<T>(
+  fn: () => Promise<T>,
+  retries: number = 3,
+  delay: number = 1000
+): Promise<T> {
+  return fn().catch(error => {
+    if (retries > 0) {
+      return sleep(delay).then(() => retry(fn, retries - 1, delay));
+    }
+    throw error;
+  });
 }

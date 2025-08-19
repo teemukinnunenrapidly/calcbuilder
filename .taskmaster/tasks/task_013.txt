@@ -5,7 +5,7 @@
 # Priority: high
 # Description: Create the lead management system as specified in section 6.4.
 # Details:
-Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel. Implement basic CRM integration capabilities via webhooks.
+Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel using Resend email service. Implement basic CRM integration capabilities via webhooks.
 
 # Test Strategy:
 Test lead capture from calculator submissions. Verify leads appear in the management interface. Test searching and filtering leads. Verify lead export to CSV/Excel works correctly. Test lead detail view displays all information. Verify email functionality correctly sends messages to leads. Test webhook integration with sample CRM system.
