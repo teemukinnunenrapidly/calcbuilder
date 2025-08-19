@@ -1,7 +1,7 @@
 # Task ID: 24
 # Title: Setup Production Deployment Infrastructure
 # Status: pending
-# Dependencies: 2
+# Dependencies: 3
 # Priority: high
 # Description: Set up production deployment infrastructure on Hetzner Cloud as specified in section 5.3.
 # Details:

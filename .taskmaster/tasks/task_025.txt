@@ -1,7 +1,7 @@
 # Task ID: 25
 # Title: Implement CI/CD Pipeline
 # Status: pending
-# Dependencies: 2, 3, 24
+# Dependencies: 2, 24
 # Priority: medium
 # Description: Create continuous integration and deployment pipeline for automated testing and deployment.
 # Details:

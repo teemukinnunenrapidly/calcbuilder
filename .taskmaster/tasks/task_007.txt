@@ -1,7 +1,7 @@
 # Task ID: 7
 # Title: Implement Drag-and-Drop Form Builder
 # Status: pending
-# Dependencies: 3, 6
+# Dependencies: 2, 6
 # Priority: high
 # Description: Create the drag-and-drop interface for building calculator forms as specified in section 4.1.
 # Details:
