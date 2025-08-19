@@ -1,0 +1,888 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Supabase Project",
+        "description": "Create and configure a new Supabase project with appropriate settings for multi-tenant architecture",
+        "details": "Create a new Supabase project through the Supabase dashboard. Configure project settings including region selection (choose one with low latency for target users), database password, and JWT secret. Enable required auth providers (email/password initially). Set up project API keys and store them securely in environment variables. Install Supabase CLI (v1.110.1+) for local development with `npm install -g supabase`. Initialize local development with `supabase init` and `supabase start`. Document project configuration in README.md.",
+        "testStrategy": "Verify project creation by connecting to the Supabase instance using the provided API keys. Confirm database connection and auth provider configuration. Test local development setup by running `supabase status` and ensuring all services are running.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Setup TypeScript Project Configuration",
+        "description": "Initialize a TypeScript project with proper configuration for type safety and code quality",
+        "details": "Initialize a new TypeScript project with `npm init -y`. Install TypeScript v5.2+ with `npm install typescript --save-dev`. Create tsconfig.json with strict type checking enabled, ESNext target, and module settings. Install ESLint (v8.50+) and Prettier (v3.0+) for code quality with `npm install eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier --save-dev`. Configure .eslintrc.js and .prettierrc files. Set up husky (v8.0+) and lint-staged for pre-commit hooks. Install Supabase client library with `npm install @supabase/supabase-js`. Create src directory structure with /types, /api, /utils, /hooks, and /components folders.",
+        "testStrategy": "Verify TypeScript compilation works with sample code. Run ESLint and Prettier on sample files to ensure code style enforcement. Test pre-commit hooks by making a commit with linting errors and verifying it's blocked.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Create Docker Development Environment",
+        "description": "Set up Docker and docker-compose for local development environment",
+        "details": "Create a docker-compose.yml file that includes services for: Supabase (using the official Supabase Docker image v1.0+), PostgreSQL (v15+), and any other required services. Configure volume mounts for persistent data. Set up environment variables in a .env file (with a .env.example template for documentation). Create a Dockerfile for the application with Node.js 18+ as the base image. Configure Docker networking to allow services to communicate. Add Docker-specific npm scripts to package.json for starting/stopping the environment. Document Docker setup in README.md with clear instructions for getting started.",
+        "testStrategy": "Test Docker environment by running `docker-compose up` and verifying all services start correctly. Confirm database connectivity from application container. Verify volume persistence by restarting containers and checking if data remains. Test environment variables are properly loaded.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Design Database Schema",
+        "description": "Create comprehensive database schema design for multi-tenant architecture",
+        "details": "Design database schema with the following tables: 'companies' (id, name, slug, created_at, updated_at, settings JSONB), 'users' (id, email, company_id, role, created_at, updated_at), 'calculators' (id, company_id, name, config JSONB, created_at, updated_at), 'user_profiles' (id, user_id, first_name, last_name, avatar_url), 'company_invitations' (id, company_id, email, role, status, expires_at). Include foreign key relationships, indexes (especially on company_id and slug fields for performance), and constraints. Document schema with an ER diagram using a tool like dbdiagram.io. Consider partitioning strategy for large tables if needed. Implement proper timestamp handling with created_at and updated_at fields.",
+        "testStrategy": "Review schema design with team for completeness. Validate foreign key relationships and constraints. Test schema with sample data to ensure it meets all requirements. Verify indexing strategy with EXPLAIN queries on expected access patterns.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Database Migrations",
+        "description": "Create migration scripts for database schema implementation",
+        "details": "Use Supabase migrations for version-controlled schema changes. Create initial migration with `supabase migration new initial_schema`. Implement SQL scripts for all tables defined in the schema design. Include indexes, constraints, and triggers (especially for updated_at timestamp updates). Set up Row Level Security (RLS) policies for multi-tenant data isolation. Create helper functions in SQL for common operations. Implement the migrations locally first with `supabase db reset` to test. Document migration process in README.md. Consider using pgTAP for database unit testing.",
+        "testStrategy": "Run migrations in development environment and verify all tables, constraints, and indexes are created correctly. Test RLS policies by attempting cross-tenant data access. Verify triggers work by testing timestamp updates. Create test data and verify schema supports all required queries.",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Define TypeScript Data Models",
+        "description": "Create TypeScript interfaces and Zod schemas for all data models",
+        "details": "Create TypeScript interfaces for all database tables in src/types/models.ts. Implement Zod schemas (v3.22+) in src/schemas/ for validation of all models. Include proper types for all fields, including enums for status and role fields. Create utility functions for type conversion and validation. Implement discriminated unions where appropriate for type safety. Use branded types for IDs to prevent type confusion. Create helper functions for working with timestamps and JSON fields. Document type system in README.md. Consider generating types from database schema using a tool like Supabase's type generator.",
+        "testStrategy": "Write unit tests for Zod schemas with valid and invalid data. Test type compatibility with sample API responses. Verify type safety by intentionally introducing type errors and confirming TypeScript catches them. Test utility functions with various inputs.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Authentication System",
+        "description": "Set up user authentication with email/password and JWT tokens",
+        "details": "Configure Supabase Auth with email/password provider. Implement sign up, sign in, password reset, and email verification flows. Create custom JWT claims for user roles and company_id. Set up refresh token rotation for security. Implement auth middleware for protected routes. Create auth hooks for React (useAuth, useUser) if using React frontend. Set up proper session handling with secure, HTTP-only cookies. Implement CSRF protection. Configure email templates for auth-related emails. Document authentication flows in README.md. Consider implementing OAuth providers (Google, GitHub) as additional options.",
+        "testStrategy": "Test complete authentication flow including signup, verification, login, password reset. Verify JWT token contents and expiration. Test auth middleware with valid and invalid tokens. Verify refresh token rotation works correctly. Test CSRF protection. Verify email templates are sent correctly.",
+        "priority": "high",
+        "dependencies": [
+          1,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Role-Based Access Control",
+        "description": "Create RBAC system for different user permission levels",
+        "details": "Define role enum in database (admin, member, readonly). Create permissions table mapping roles to specific actions. Implement RLS policies in database based on user role. Create middleware for checking permissions on API routes. Implement helper functions for permission checking (canUserDoAction). Create UI components for conditional rendering based on permissions. Document role system and permissions in README.md. Consider implementing a more granular permission system if needed for future scalability.",
+        "testStrategy": "Test each role with various actions to verify correct permissions. Verify RLS policies prevent unauthorized data access. Test API endpoints with different user roles. Verify UI components correctly show/hide based on permissions. Test edge cases like role changes and session expiration.",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Multi-Tenant Architecture",
+        "description": "Set up company isolation and slug-based routing for multi-tenant system",
+        "details": "Implement RLS policies for company data isolation using auth.jwt() -> company_id. Create middleware for slug-based routing that maps company slugs to company_id. Implement tenant context in application to store current company information. Create utility functions for tenant-aware database queries. Set up virtual schemas or search paths in PostgreSQL for tenant isolation if needed. Implement tenant initialization process for new companies. Document multi-tenant architecture in README.md. Consider implementing a caching layer for tenant information to improve performance.",
+        "testStrategy": "Test data isolation by attempting to access data from different companies. Verify slug-based routing works correctly for different companies. Test tenant context with various scenarios. Verify performance of tenant-aware queries with larger datasets. Test tenant initialization process.",
+        "priority": "high",
+        "dependencies": [
+          5,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Set Up API Foundation",
+        "description": "Create REST API foundation with endpoint structure and middleware",
+        "details": "Set up API router using Express (v4.18+) or Next.js API routes. Implement middleware for authentication, error handling, request validation, and logging. Create base controller class for common CRUD operations. Implement rate limiting using express-rate-limit or similar. Set up API versioning (v1) in URL structure. Create standardized response format with status, data, and error fields. Implement request logging with correlation IDs. Set up CORS configuration for security. Document API structure and conventions in README.md. Consider implementing OpenAPI/Swagger documentation.",
+        "testStrategy": "Test API endpoints with various inputs including edge cases. Verify middleware functions correctly for auth, validation, etc. Test rate limiting by exceeding limits. Verify CORS works correctly with allowed origins. Test error handling with various error scenarios. Verify logging captures all necessary information.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Edge Functions Setup",
+        "description": "Configure and deploy Supabase Edge Functions for serverless API functionality",
+        "details": "Set up Supabase Edge Functions for serverless API endpoints. Create function deployment pipeline. Implement shared utilities for Edge Functions. Create authentication helpers for Edge Functions. Set up environment variables for Edge Functions. Implement error handling and logging for Edge Functions. Create example Edge Function for reference. Document Edge Function development workflow in README.md. Consider implementing a local development environment for Edge Functions using the Supabase CLI.",
+        "testStrategy": "Test Edge Functions locally using Supabase CLI. Verify deployment pipeline works correctly. Test authentication in Edge Functions. Verify error handling works as expected. Test performance and cold start times. Verify environment variables are accessible.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          7,
+          10
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement Storage Configuration",
+        "description": "Set up file upload system for images, logos, and documents",
+        "details": "Configure Supabase Storage buckets for different file types (images, documents, etc.). Implement RLS policies for storage access control. Create utility functions for file uploads, downloads, and URL generation. Implement file type validation and size limits. Set up image processing pipeline for resizing and optimization using a library like sharp. Create React components for file uploads if using React frontend. Implement progress tracking for uploads. Document storage system in README.md. Consider implementing virus scanning for uploaded files using ClamAV or a third-party service.",
+        "testStrategy": "Test file uploads with various file types and sizes. Verify RLS policies prevent unauthorized access to files. Test image processing with different image formats. Verify URL generation works correctly. Test concurrent uploads. Verify error handling for failed uploads.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Real-time Subscriptions",
+        "description": "Set up WebSocket connections for live updates using Supabase Realtime",
+        "details": "Configure Supabase Realtime for database changes. Create subscription utilities for different tables. Implement client-side handlers for real-time events. Set up channel presence for online user tracking if needed. Create React hooks for real-time data if using React frontend. Implement reconnection logic for WebSocket disconnects. Set up proper error handling for subscription failures. Document real-time system in README.md. Consider implementing a message queue for handling high-volume events.",
+        "testStrategy": "Test real-time subscriptions by making database changes and verifying events are received. Test reconnection logic by simulating network interruptions. Verify presence functionality if implemented. Test with multiple concurrent clients. Verify performance with higher message volumes.",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          10
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Create Company Management API",
+        "description": "Implement API endpoints for company CRUD operations",
+        "details": "Create API endpoints for creating, reading, updating, and deleting companies. Implement slug generation and uniqueness validation. Create company settings management endpoints. Implement company logo upload and management. Create endpoints for user invitation to companies. Implement company statistics and usage metrics. Set up proper validation using Zod schemas. Document company API endpoints in README.md. Consider implementing company templates for quick setup of new companies.",
+        "testStrategy": "Test all CRUD operations for companies. Verify slug generation works correctly and handles conflicts. Test settings management with various inputs. Verify logo upload and retrieval. Test user invitation flow. Verify validation rejects invalid inputs. Test with various edge cases.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          9,
+          10,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement User Management API",
+        "description": "Create API endpoints for user management within companies",
+        "details": "Create API endpoints for user CRUD operations within a company context. Implement user role management. Create endpoints for user profile management. Implement user avatar upload and management. Create endpoints for user preferences. Set up proper validation using Zod schemas. Implement pagination for user listing. Document user management API in README.md. Consider implementing user activity tracking for audit purposes.",
+        "testStrategy": "Test all CRUD operations for users. Verify role management works correctly. Test profile management with various inputs. Verify avatar upload and retrieval. Test user preferences storage and retrieval. Verify validation rejects invalid inputs. Test pagination with larger datasets.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          8,
+          10,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Implement Calculator Management API",
+        "description": "Create API endpoints for calculator CRUD operations",
+        "details": "Create API endpoints for creating, reading, updating, and deleting calculators. Implement calculator configuration storage and validation. Create endpoints for calculator usage statistics. Implement calculator versioning if needed. Set up proper validation using Zod schemas. Create utility functions for calculator operations. Document calculator API endpoints in README.md. Consider implementing calculator templates for common use cases.",
+        "testStrategy": "Test all CRUD operations for calculators. Verify configuration storage and retrieval works correctly. Test statistics endpoints. Verify versioning if implemented. Test validation with various inputs including edge cases. Verify utility functions work as expected.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          9,
+          10
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Set Up Logging and Monitoring",
+        "description": "Implement comprehensive logging and monitoring system",
+        "details": "Set up structured logging using a library like Winston or Pino. Implement request logging middleware. Create error tracking integration with Sentry or similar service. Set up performance monitoring for API endpoints. Implement database query logging for debugging. Create custom logging utilities for different parts of the application. Set up log rotation and retention policies. Document logging system in README.md. Consider implementing distributed tracing with OpenTelemetry for complex requests.",
+        "testStrategy": "Verify logs are generated for various application events. Test error tracking by triggering errors. Verify performance metrics are collected correctly. Test log rotation and retention. Verify structured logs can be parsed and analyzed. Test with high volume to ensure logging doesn't impact performance.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          10
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Implement Database Backup System",
+        "description": "Set up automated database backups and restoration procedures",
+        "details": "Configure Supabase automated backups. Implement custom backup scripts for additional control if needed. Create backup verification process. Set up backup rotation and retention policy. Implement restoration testing procedure. Create documentation for disaster recovery. Set up monitoring for backup success/failure. Document backup system in README.md. Consider implementing point-in-time recovery for critical data.",
+        "testStrategy": "Verify automated backups are created on schedule. Test restoration process in a separate environment. Verify backup rotation works as expected. Test monitoring alerts for backup failures. Verify documentation is complete and accurate by following it for a test restoration.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "Create API Documentation",
+        "description": "Generate comprehensive API documentation for developers",
+        "details": "Set up OpenAPI/Swagger documentation for all API endpoints. Create example requests and responses. Document authentication requirements. Implement API playground for testing. Create markdown documentation for development workflows. Set up automatic documentation generation from code comments. Create postman/insomnia collection for API testing. Document error codes and handling. Consider implementing a documentation site using tools like Docusaurus or VitePress.",
+        "testStrategy": "Verify documentation is accurate by testing example requests. Test API playground functionality. Verify authentication documentation is correct by following the process. Test automatic documentation generation. Verify postman/insomnia collection works correctly.",
+        "priority": "low",
+        "dependencies": [
+          10,
+          14,
+          15,
+          16
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Implement End-to-End Testing Suite",
+        "description": "Create comprehensive end-to-end tests for critical system flows",
+        "details": "Set up Cypress (v13+) or Playwright (v1.38+) for end-to-end testing. Create test fixtures and helpers. Implement tests for authentication flows. Create tests for company management. Implement tests for user management. Create tests for calculator operations. Set up CI/CD integration for automated testing. Implement visual regression testing if needed. Document testing approach in README.md. Consider implementing API contract testing with tools like Pact.",
+        "testStrategy": "Run end-to-end tests in various environments (development, staging). Verify tests cover all critical user flows. Test with different screen sizes if testing UI. Verify CI/CD integration works correctly. Test performance impact of test fixtures.",
+        "priority": "medium",
+        "dependencies": [
+          7,
+          14,
+          15,
+          16
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 21,
+        "title": "Set up React project with shadcn/ui",
+        "description": "Initialize the React project and integrate shadcn/ui component library as the foundation for the admin panel",
+        "details": "Create a new React project using Next.js 14 for better SEO and server components. Install shadcn/ui using their CLI: `npx shadcn-ui@latest init`. Configure the tailwind.config.js and globals.css for theming. Set up the project structure with folders for components, hooks, contexts, pages, and utils. Install dependencies: next@14.0.3, react@18.2.0, react-dom@18.2.0, tailwindcss@3.3.5, @radix-ui/react-icons@1.3.0. Configure eslint and prettier for code quality.",
+        "testStrategy": "Verify project structure is correct. Run the application to ensure it starts without errors. Check that shadcn/ui components can be imported and rendered correctly. Use Storybook to visually test base components.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 22,
+        "title": "Create admin layout and responsive sidebar navigation",
+        "description": "Implement the main layout structure for the admin panel with responsive sidebar navigation that collapses on mobile",
+        "details": "Create a layout component using shadcn/ui Sheet for mobile and fixed sidebar for desktop. Implement responsive design with Tailwind breakpoints. Use React context for managing sidebar state (open/closed). Create navigation items with active states using Next.js usePathname hook. Group navigation items by sections (Dashboard, User Management, Company Settings, Lead Management). Use Lucide React (v0.292.0) for icons. Implement keyboard navigation accessibility. Add collapsible sections for grouped navigation items.",
+        "testStrategy": "Test responsive behavior across different screen sizes (mobile, tablet, desktop). Verify navigation items correctly highlight active routes. Test keyboard navigation. Ensure sidebar collapses and expands correctly on mobile. Verify ARIA attributes for accessibility.",
+        "priority": "high",
+        "dependencies": [
+          21
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 23,
+        "title": "Implement authentication and protected routes",
+        "description": "Set up authentication system with login page and protected routes for the admin panel",
+        "details": "Implement authentication using NextAuth.js v4.24.5 with JWT strategy. Create login page with shadcn/ui Form components for email/password. Add form validation using zod (v3.22.4). Implement protected route middleware to prevent unauthorized access. Create AuthContext using React Context API to manage auth state globally. Add session persistence with cookies. Implement logout functionality. Create loading states during authentication checks. Handle authentication errors with proper user feedback.",
+        "testStrategy": "Test login with valid and invalid credentials. Verify protected routes redirect to login when not authenticated. Test session persistence across page refreshes. Verify logout functionality clears session data. Test error handling for authentication failures.",
+        "priority": "high",
+        "dependencies": [
+          21,
+          22
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 24,
+        "title": "Create admin dashboard overview page",
+        "description": "Build the main dashboard page with overview metrics, recent activity feed, and quick action buttons",
+        "details": "Create dashboard layout with shadcn/ui Card components for metrics. Implement metrics cards for users count, active leads, and system status. Use shadcn/ui Table for recent activity feed with pagination. Add quick action buttons for common tasks (add user, view leads, etc.). Implement data fetching with React Query v5 for optimized API calls. Create skeleton loaders for metrics while data is loading. Use shadcn/ui Tabs for organizing different dashboard sections. Implement responsive grid layout using Tailwind CSS grid classes.",
+        "testStrategy": "Test data fetching and display of metrics. Verify skeleton loaders appear during loading states. Test responsive layout across screen sizes. Verify quick action buttons navigate to correct pages. Test pagination in activity feed.",
+        "priority": "medium",
+        "dependencies": [
+          22,
+          23
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 25,
+        "title": "Implement global state management with Context API",
+        "description": "Set up global state management for user data, company settings, and application state using React Context API",
+        "details": "Create separate context providers for UserContext, CompanyContext, and SettingsContext. Implement custom hooks (useUser, useCompany, useSettings) for accessing context data. Set up reducer patterns for complex state updates. Implement local storage persistence for settings. Create actions for common state updates. Optimize context with useMemo and useCallback to prevent unnecessary re-renders. Implement context initialization from API data. Add TypeScript interfaces for all context types.",
+        "testStrategy": "Test context providers with mock data. Verify custom hooks correctly access context data. Test state updates through context actions. Verify persistence of settings in local storage. Test context initialization from API data.",
+        "priority": "high",
+        "dependencies": [
+          21,
+          23
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 26,
+        "title": "Create API integration layer with React Query",
+        "description": "Implement API integration layer using React Query for data fetching, mutations, and caching",
+        "details": "Set up React Query v5 with QueryClientProvider. Create custom hooks for common API operations (useUsers, useCompany, useLeads). Implement optimistic updates for mutations. Set up proper error handling with error boundaries. Configure caching strategies for different data types. Implement automatic refetching on window focus. Create interceptors for handling authentication tokens. Add retry logic for failed requests. Implement pagination and infinite scrolling utilities. Use TypeScript for type-safe API responses.",
+        "testStrategy": "Test API hooks with mock server responses. Verify caching behavior works as expected. Test error handling for failed requests. Verify optimistic updates for mutations. Test pagination and infinite scrolling functionality.",
+        "priority": "high",
+        "dependencies": [
+          23,
+          25
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 27,
+        "title": "Implement user listing and search functionality",
+        "description": "Create user listing page with search, filtering, and pagination capabilities",
+        "details": "Build user listing page using shadcn/ui Table component. Implement server-side pagination with limit/offset pattern. Add search functionality with debounced input. Create filters for user status, role, and creation date. Implement column sorting. Use shadcn/ui Select for filter dropdowns. Add skeleton loading states during data fetching. Implement useUsers hook with React Query for data fetching. Add empty state for when no users match filters. Create responsive table that switches to cards on mobile. Implement bulk selection with shadcn/ui Checkbox.",
+        "testStrategy": "Test pagination works correctly. Verify search filters users as expected. Test sorting functionality for each column. Verify responsive behavior on different screen sizes. Test loading states and empty states.",
+        "priority": "medium",
+        "dependencies": [
+          22,
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 28,
+        "title": "Create user detail and edit forms",
+        "description": "Implement user detail view and edit forms for user management",
+        "details": "Create user detail page with shadcn/ui Card for user information. Build edit form using shadcn/ui Form components. Implement form validation with zod schema. Add role selection with shadcn/ui Select. Create permission management UI with shadcn/ui Checkbox group. Implement form submission with React Query mutations. Add confirmation dialogs for sensitive actions. Create success/error notifications using shadcn/ui Toast. Implement form dirty checking to prevent accidental navigation. Add cancel and submit buttons with proper loading states.",
+        "testStrategy": "Test form validation for required fields. Verify form submission updates user data. Test cancel functionality discards changes. Verify dirty form warning prevents accidental navigation. Test role and permission updates.",
+        "priority": "medium",
+        "dependencies": [
+          26,
+          27
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 29,
+        "title": "Implement user creation functionality",
+        "description": "Create user creation form and workflow for adding new users to the system",
+        "details": "Build user creation form using shadcn/ui Form components. Implement multi-step form process (basic info, roles, permissions). Add form validation with zod schema. Create email validation with regex pattern. Implement password strength requirements with visual indicator. Add role assignment with shadcn/ui Select. Create permission selection UI with shadcn/ui Checkbox group. Implement form submission with React Query mutations. Add success/error notifications using shadcn/ui Toast. Create welcome email preview.",
+        "testStrategy": "Test form validation for all required fields. Verify multi-step form navigation works correctly. Test password strength validation. Verify role and permission assignment. Test form submission creates new user. Verify success notification appears after creation.",
+        "priority": "medium",
+        "dependencies": [
+          26,
+          28
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 30,
+        "title": "Implement user deletion and account deactivation",
+        "description": "Create functionality for deactivating and deleting user accounts with confirmation dialogs",
+        "details": "Implement user deactivation toggle using shadcn/ui Switch. Create deletion functionality with confirmation dialog using shadcn/ui AlertDialog. Add soft delete option that preserves user data but prevents login. Implement permanent deletion with additional confirmation. Create batch actions for multiple user selection. Add audit logging for account changes. Implement undo functionality for recent deactivations. Create success/error notifications using shadcn/ui Toast. Handle edge cases like preventing self-deletion for admin users.",
+        "testStrategy": "Test deactivation toggle correctly updates user status. Verify confirmation dialogs appear before deletion. Test batch actions work on multiple selected users. Verify audit logging records account changes. Test undo functionality for recent deactivations. Verify admins cannot delete their own accounts.",
+        "priority": "medium",
+        "dependencies": [
+          26,
+          28
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 31,
+        "title": "Implement role and permission management",
+        "description": "Create role management interface for defining and assigning user permissions",
+        "details": "Build role management page with shadcn/ui Table for listing roles. Create role detail view with assigned permissions. Implement permission matrix UI using shadcn/ui Checkbox grid. Add role creation form with name and description. Create permission grouping by feature area. Implement role cloning functionality. Add role editing with permission updates. Create role deletion with user reassignment. Implement permission inheritance for hierarchical roles. Add search and filtering for roles and permissions.",
+        "testStrategy": "Test role creation with permissions. Verify permission matrix correctly displays and updates. Test role editing updates permissions. Verify role deletion with user reassignment works. Test permission inheritance for hierarchical roles. Verify search and filtering for roles.",
+        "priority": "medium",
+        "dependencies": [
+          26,
+          30
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 32,
+        "title": "Create company settings and branding configuration",
+        "description": "Implement company settings page for configuring branding, themes, and logos",
+        "details": "Build company settings page with shadcn/ui Tabs for different sections. Create branding section with logo upload using react-dropzone (v14.2.3). Implement color theme configuration with color pickers. Add company information form (name, address, contact). Create theme preview with live updates. Implement logo cropping and resizing with react-image-crop (v11.0.1). Add favicon generation from logo. Create email template preview with branding applied. Implement theme persistence with local storage and API. Add reset to defaults functionality.",
+        "testStrategy": "Test logo upload and preview. Verify color theme changes apply correctly. Test company information updates. Verify theme persistence across page refreshes. Test logo cropping and resizing. Verify email template preview updates with branding changes.",
+        "priority": "low",
+        "dependencies": [
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 33,
+        "title": "Implement lead management interface",
+        "description": "Create lead management interface with listing, filtering, and export functionality",
+        "details": "Build lead management page with shadcn/ui Table for listing leads. Implement filtering by status, source, and date range. Create lead detail view with contact information and activity history. Add export functionality to CSV and Excel using exceljs (v4.4.0). Implement batch actions for multiple lead selection. Create lead status update functionality. Add sorting by different columns. Implement search with multiple field matching. Create pagination with limit/offset pattern. Add skeleton loading states during data fetching.",
+        "testStrategy": "Test lead listing with filters. Verify export functionality creates valid files. Test batch actions on multiple selected leads. Verify lead status updates. Test sorting and searching functionality. Verify pagination works correctly.",
+        "priority": "medium",
+        "dependencies": [
+          26,
+          27
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 34,
+        "title": "Create notification system",
+        "description": "Implement in-app notification system for user actions and system events",
+        "details": "Build notification component using shadcn/ui Toast for temporary notifications. Create persistent notification center with shadcn/ui Popover. Implement notification types (info, success, warning, error). Add notification grouping by type and time. Create notification preferences in user settings. Implement real-time notifications with WebSockets or Server-Sent Events. Add notification read/unread status. Create notification clearing functionality. Implement notification sound options. Add desktop notification support with Notification API.",
+        "testStrategy": "Test different notification types display correctly. Verify notification center shows persistent notifications. Test notification preferences save correctly. Verify real-time notifications appear promptly. Test notification read/unread status updates. Verify desktop notifications work with permission.",
+        "priority": "low",
+        "dependencies": [
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 35,
+        "title": "Implement activity logging and audit trail",
+        "description": "Create activity logging system for tracking user actions and system changes",
+        "details": "Build activity log page with shadcn/ui Table for listing activities. Implement filtering by user, action type, and date range. Create detail view for each activity with before/after values. Add export functionality to CSV. Implement automatic logging middleware for API actions. Create log retention policy settings. Add IP address and user agent tracking. Implement log search functionality. Create visual timeline view option. Add anomaly detection for suspicious activities.",
+        "testStrategy": "Test activity logging for different user actions. Verify filtering works correctly. Test export functionality creates valid CSV files. Verify detail view shows accurate before/after values. Test log search functionality. Verify anomaly detection flags suspicious activities.",
+        "priority": "low",
+        "dependencies": [
+          26,
+          33
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 36,
+        "title": "Create user profile and preferences",
+        "description": "Implement user profile page for personal settings and preferences",
+        "details": "Build user profile page with shadcn/ui Tabs for different sections. Create personal information form with avatar upload. Implement password change functionality with current password verification. Add notification preferences section. Create theme preference toggle (light/dark/system). Implement language selection with i18next (v23.5.1). Add accessibility settings. Create session management with active sessions list. Implement two-factor authentication setup with QR code. Add API key management for developers.",
+        "testStrategy": "Test personal information updates. Verify password change requires current password. Test notification preferences save correctly. Verify theme preference applies correctly. Test language selection changes UI language. Verify two-factor authentication setup works correctly.",
+        "priority": "low",
+        "dependencies": [
+          23,
+          25,
+          34
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 37,
+        "title": "Implement responsive design and mobile optimization",
+        "description": "Ensure responsive design and mobile optimization across all admin panel interfaces",
+        "details": "Implement responsive layouts using Tailwind CSS breakpoints. Create mobile-specific navigation with bottom tabs. Optimize tables for mobile view with card-based alternatives. Implement touch-friendly controls for mobile users. Add swipe gestures for common actions. Create responsive form layouts that stack on mobile. Implement viewport meta tags for proper scaling. Add media queries for print styles. Test and optimize for iOS and Android browsers. Implement progressive enhancement for older browsers.",
+        "testStrategy": "Test all interfaces on various screen sizes (mobile, tablet, desktop). Verify touch interactions work correctly on mobile devices. Test navigation is usable on small screens. Verify forms are usable on mobile. Test print styles for relevant pages. Verify performance on mobile devices.",
+        "priority": "medium",
+        "dependencies": [
+          22,
+          24,
+          27,
+          33
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 38,
+        "title": "Implement comprehensive testing suite",
+        "description": "Create comprehensive testing suite with unit, integration, and end-to-end tests",
+        "details": "Set up Jest (v29.7.0) for unit testing. Implement React Testing Library (v14.1.2) for component testing. Add Cypress (v13.5.1) for end-to-end testing. Create test utilities for common testing patterns. Implement mock service worker (MSW v2.0.9) for API mocking. Add snapshot testing for UI components. Create accessibility testing with jest-axe (v8.0.1). Implement visual regression testing with Chromatic. Add test coverage reporting. Create CI/CD pipeline integration for automated testing.",
+        "testStrategy": "Verify unit tests cover critical business logic. Test component rendering and interactions. Run end-to-end tests for critical user flows. Verify accessibility compliance with WCAG standards. Test API integrations with mock services. Verify visual consistency with snapshot tests.",
+        "priority": "medium",
+        "dependencies": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 39,
+        "title": "Set up @dnd-kit Integration for Drag-and-Drop Functionality",
+        "description": "Integrate and configure @dnd-kit library to enable drag-and-drop functionality for the form builder component.",
+        "details": "Install @dnd-kit/core (v6.0.8 or latest) and @dnd-kit/sortable (v7.0.2 or latest) packages. Create a DragContext provider component that will wrap the form builder. Implement the DragOverlay, useSortable, and DndContext components from the library. Configure sensors for mouse, touch, and keyboard interactions. Set up collision detection algorithms (rectIntersection is recommended for form building). Create custom drag handles for form elements. Implement drop zones for different sections of the form. Add animations for drag start, drag end, and drop events using CSS transitions or @dnd-kit/animation package.",
+        "testStrategy": "Create unit tests for drag and drop functionality using React Testing Library. Test dragging fields from the library to the form canvas. Test reordering of fields within a section. Test moving fields between different sections. Verify proper state updates after drag operations. Test keyboard accessibility for drag operations. Test touch interactions on mobile devices.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 40,
+        "title": "Implement Field Library Component",
+        "description": "Create a component that displays all available field types that can be dragged onto the form canvas.",
+        "details": "Develop a Field Library component that categorizes form fields into logical groups (e.g., Text Inputs, Selection Controls, Media Elements, etc.). Each field type should have an icon, name, and brief description. Implement a search functionality to filter field types. Use React context to manage the available field types. Each field should be represented as a draggable item using @dnd-kit hooks (useDraggable). Field types should include: Text Input, Number Input, Email, Phone, Date Picker, Time Picker, Select Dropdown, Multi-select, Checkbox, Radio Group, File Upload, Image Display, Text Area, Rating, Slider, Toggle Switch. Store field metadata in a configuration object that includes properties like type, default values, validation rules, and UI properties.",
+        "testStrategy": "Unit test the Field Library component to ensure all field types are properly displayed. Test the search/filter functionality. Test that draggable items are properly configured with @dnd-kit. Verify that field metadata is correctly associated with each field type. Test accessibility of the field library component.",
+        "priority": "high",
+        "dependencies": [
+          39
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 41,
+        "title": "Create Form Canvas with Section Management",
+        "description": "Develop the main form canvas area where fields can be dropped and organized into sections.",
+        "details": "Implement a Form Canvas component that serves as the drop target for fields from the library. Create a Section component that can contain multiple form fields. Sections should be collapsible, reorderable, and have customizable titles. Use CSS Grid or Flexbox for responsive layout of the form canvas. Implement the useDroppable hook from @dnd-kit for drop zones. Create a form state management system using React context or Redux to track the structure of the form (sections and their fields). Add functionality to add, remove, and reorder sections. Implement a JSON schema representation of the form structure that can be saved to the database. Use React.memo or useMemo to optimize rendering performance for complex forms.",
+        "testStrategy": "Test dropping fields onto the canvas from the field library. Verify that sections can be added, removed, and reordered. Test collapsing and expanding sections. Verify that the form state is correctly updated when modifications are made. Test the JSON schema generation for accuracy. Test responsive behavior on different screen sizes. Verify that the canvas handles a large number of fields efficiently.",
+        "priority": "high",
+        "dependencies": [
+          39,
+          40
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 42,
+        "title": "Implement Real-time Form Preview",
+        "description": "Create a real-time preview component that shows how the form will appear to end-users as it's being built.",
+        "details": "Develop a Preview component that renders the current form state as it would appear to end users. Implement a toggle mechanism to switch between builder and preview modes. Use React's context API to share form state between builder and preview components. Render each field type according to its configuration using a Field Renderer component. Apply styling that matches the final output. Make the preview responsive to different screen sizes using CSS media queries. Add a device selector to view the preview as it would appear on desktop, tablet, or mobile. Implement form navigation for multi-step forms in the preview. Use CSS modules or styled-components for styling to prevent style leakage between builder and preview.",
+        "testStrategy": "Test that the preview accurately reflects the current form structure. Verify that all field types render correctly in the preview. Test the preview on different screen sizes and with the device selector. Verify that multi-step navigation works in preview mode. Test that style changes in the builder are reflected in the preview. Verify that the preview is updated in real-time as changes are made in the builder.",
+        "priority": "medium",
+        "dependencies": [
+          41
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 43,
+        "title": "Develop Formula Parser Engine",
+        "description": "Create a safe mathematical expression parser that can evaluate formulas with variable substitution.",
+        "details": "Implement a formula parsing engine using a library like math.js (v11.8.0 or latest) for safe evaluation. Create a custom scope for variables that can be referenced in formulas. Implement sanitization of input formulas to prevent code injection. Support basic arithmetic operations (+, -, *, /, ^). Add support for mathematical functions (sin, cos, tan, abs, round, floor, ceiling, etc.). Implement support for logical operators (AND, OR, NOT, >, <, >=, <=, ==, !=). Create a variable substitution mechanism that replaces field references with actual values. Implement error handling for invalid formulas. Add support for unit conversion (e.g., currency, length, weight). Cache parsed formulas for performance optimization. Create a formula validation function that checks syntax before saving.",
+        "testStrategy": "Create unit tests for formula parsing with various mathematical expressions. Test variable substitution with different data types. Test error handling with invalid formulas. Test performance with complex formulas. Verify that the parser is secure against code injection attempts. Test all supported mathematical functions and operators. Verify that unit conversions work correctly.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 44,
+        "title": "Create Visual Formula Editor Component",
+        "description": "Develop an intuitive visual editor for creating and editing formulas with field references.",
+        "details": "Build a Formula Editor component with syntax highlighting using a library like CodeMirror (v6.0.0 or latest) or Monaco Editor. Implement autocomplete for field references and mathematical functions. Create a field reference picker that shows available fields that can be used in formulas. Add a formula testing panel that allows users to enter test values and see results. Implement error highlighting for invalid syntax. Add tooltips for functions and operators explaining their usage. Create a formula history/undo feature. Implement a simple mode for basic formulas and an advanced mode for complex expressions. Use React context to share the formula state with other components. Add a formula library with common templates that users can start from.",
+        "testStrategy": "Test syntax highlighting for different formula components. Verify that autocomplete works for fields and functions. Test the field reference picker to ensure it shows all available fields. Verify that the formula testing panel correctly evaluates expressions. Test error highlighting with various syntax errors. Verify that tooltips provide accurate information. Test the formula history/undo feature. Verify that both simple and advanced modes work correctly.",
+        "priority": "high",
+        "dependencies": [
+          43
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 45,
+        "title": "Implement Variable Selection System",
+        "description": "Create a system for selecting and referencing form fields as variables in formulas.",
+        "details": "Develop a VariableSelector component that displays all available fields that can be used in formulas. Implement a search/filter functionality to find fields by name or type. Create a mechanism to insert field references into the formula editor. Generate unique identifiers for each field that can be used in formulas. Implement a visual indicator in the form builder showing which fields are used in formulas. Create a dependency graph to track relationships between fields and formulas. Add validation to prevent circular references in formulas. Implement a system to handle field renaming that updates all formula references. Use React context to share the available variables across components.",
+        "testStrategy": "Test the variable selector to ensure it displays all available fields. Verify that search/filter functionality works correctly. Test inserting field references into the formula editor. Verify that unique identifiers are generated consistently. Test the visual indicators for fields used in formulas. Verify that the dependency graph correctly tracks relationships. Test circular reference detection. Verify that field renaming updates all formula references.",
+        "priority": "high",
+        "dependencies": [
+          41,
+          44
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 46,
+        "title": "Implement Mathematical Functions Library",
+        "description": "Create a library of mathematical functions that can be used in formulas.",
+        "details": "Implement a comprehensive library of mathematical functions including: Basic arithmetic (add, subtract, multiply, divide, power, modulo), Trigonometric functions (sin, cos, tan, asin, acos, atan), Statistical functions (min, max, average, sum, count, median), Financial functions (PMT, FV, PV, IRR, NPV), Logical functions (if, and, or, not), Text functions (concat, substring, length), Date functions (date difference, add days, format date). Each function should have proper documentation with examples. Create a function browser component that allows users to explore available functions. Implement function insertion into the formula editor. Add support for nested function calls. Use JSDoc comments for better IDE integration and documentation.",
+        "testStrategy": "Create unit tests for each mathematical function. Test functions with various input types and edge cases. Verify that nested function calls work correctly. Test the function browser component. Verify that function insertion into the formula editor works properly. Test function documentation for accuracy and completeness. Verify that all functions work with the formula parser.",
+        "priority": "medium",
+        "dependencies": [
+          43,
+          44
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 47,
+        "title": "Set up Supabase Storage for Visual Elements",
+        "description": "Integrate Supabase storage for uploading and managing visual elements like images and media files.",
+        "details": "Set up Supabase client with storage configuration using @supabase/supabase-js (v2.24.0 or latest). Create storage buckets for different types of media (images, videos, documents). Implement file upload functionality with progress indicators. Add file type validation and size restrictions. Create a media library component to browse and select uploaded files. Implement image optimization using the Supabase image transformation API. Add metadata storage for media files (dimensions, file type, creation date, etc.). Implement file deletion and replacement functionality. Create a caching mechanism for frequently accessed media. Set up proper CORS configuration for the storage bucket. Implement security rules to control access to uploaded files.",
+        "testStrategy": "Test file upload functionality with various file types and sizes. Verify that progress indicators work correctly. Test file type validation and size restrictions. Verify that the media library displays all uploaded files. Test image optimization with different parameters. Verify that metadata is correctly stored and retrieved. Test file deletion and replacement. Verify that caching works for frequently accessed media. Test security rules to ensure proper access control.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 48,
+        "title": "Implement Image Upload and Management",
+        "description": "Create components for uploading, cropping, and managing images in the form builder.",
+        "details": "Implement an ImageUploader component using react-dropzone (v14.2.3 or latest) for drag-and-drop file uploads. Add image preview functionality. Integrate react-image-crop (v10.1.4 or latest) for image cropping and resizing. Create an ImageGallery component to browse and select from previously uploaded images. Implement image optimization before upload (client-side compression). Add support for image metadata editing (alt text, title, description). Implement lazy loading for images in the gallery. Create a responsive image component that serves appropriate sizes based on screen dimensions. Add support for image categorization and tagging. Implement search functionality for the image gallery.",
+        "testStrategy": "Test image upload with various file types and sizes. Verify that drag-and-drop functionality works correctly. Test image cropping and resizing. Verify that the image gallery displays all uploaded images. Test image optimization. Verify that metadata can be edited and saved. Test lazy loading for performance. Verify that responsive images work on different screen sizes. Test image categorization and tagging. Verify that search functionality works in the image gallery.",
+        "priority": "medium",
+        "dependencies": [
+          47
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 49,
+        "title": "Develop Carousel Configuration Component",
+        "description": "Create a component for configuring and managing image carousels in the form.",
+        "details": "Implement a CarouselBuilder component using react-slick (v0.29.0 or latest) or swiper (v9.3.2 or latest). Create controls for carousel settings (autoplay, speed, transition effects, navigation arrows, pagination dots). Add drag-and-drop functionality for ordering carousel slides. Implement slide editing with image cropping and text overlay options. Create responsive behavior settings for different screen sizes. Add support for video content in carousel slides. Implement lazy loading for carousel images. Create animation options for slide transitions. Add accessibility features (keyboard navigation, ARIA attributes). Implement event tracking for carousel interactions.",
+        "testStrategy": "Test carousel configuration with various settings. Verify that drag-and-drop ordering works correctly. Test slide editing with image cropping and text overlays. Verify that responsive behavior works on different screen sizes. Test video content in carousel slides. Verify that lazy loading improves performance. Test animation options for slide transitions. Verify that accessibility features work correctly. Test event tracking for carousel interactions.",
+        "priority": "medium",
+        "dependencies": [
+          48
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 50,
+        "title": "Implement Display Mode Configuration",
+        "description": "Create a system for configuring how visual elements are displayed based on device type and screen size.",
+        "details": "Implement a DisplayModeManager component that allows configuration of visual elements for different device types (desktop, tablet, mobile). Create a device preview selector to switch between different views. Implement responsive breakpoints using CSS media queries or a library like react-responsive (v9.0.0 or latest). Add controls for element visibility on different devices. Create settings for element positioning and sizing based on screen size. Implement a grid system for precise element placement. Add support for different image resolutions based on device type. Create a responsive testing mode that simulates different screen sizes. Implement device-specific styling options.",
+        "testStrategy": "Test display mode configuration for different device types. Verify that the device preview selector works correctly. Test responsive breakpoints with various screen sizes. Verify that element visibility controls work on different devices. Test element positioning and sizing based on screen size. Verify that the grid system allows precise element placement. Test image resolution switching based on device type. Verify that the responsive testing mode accurately simulates different screen sizes. Test device-specific styling options.",
+        "priority": "medium",
+        "dependencies": [
+          48,
+          49
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 51,
+        "title": "Create Field Configuration Panel",
+        "description": "Develop a panel for configuring field properties, validation rules, and appearance.",
+        "details": "Implement a FieldConfigPanel component that displays when a field is selected. Create sections for different configuration categories (basic properties, validation, appearance, advanced). Add controls for field properties (label, placeholder, help text, default value). Implement validation rule configuration (required, min/max length, pattern matching, custom validation). Create appearance settings (size, color, font, alignment). Add conditional logic configuration (show/hide based on other field values). Implement dependency settings between fields. Create advanced options like custom CSS classes and data attributes. Add support for field-specific settings based on field type. Implement a configuration history/undo feature.",
+        "testStrategy": "Test field configuration with various field types. Verify that all configuration categories work correctly. Test field property controls. Verify that validation rule configuration works as expected. Test appearance settings with different options. Verify that conditional logic configuration works correctly. Test dependency settings between fields. Verify that advanced options like custom CSS classes are applied. Test field-specific settings. Verify that the configuration history/undo feature works.",
+        "priority": "high",
+        "dependencies": [
+          41
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 52,
+        "title": "Implement Validation Rules System",
+        "description": "Create a system for defining and applying validation rules to form fields.",
+        "details": "Implement a ValidationRuleBuilder component that allows creating and editing validation rules. Support common validation types: Required field, Minimum/maximum length, Numeric range, Email format, URL format, Pattern matching (regex), Date range, File type and size. Create a custom validation rule editor with JavaScript expression support. Implement validation rule testing with sample data. Add validation error message customization. Create a validation rule library with common presets. Implement client-side validation using libraries like Yup (v1.2.0 or latest) or Zod (v3.21.4 or latest). Add support for async validation rules (e.g., checking if a username is available). Implement field dependency validation (e.g., password confirmation).",
+        "testStrategy": "Test validation rule creation and editing. Verify that all validation types work correctly. Test custom validation rules with JavaScript expressions. Verify that validation rule testing works with sample data. Test validation error message customization. Verify that the validation rule library provides useful presets. Test client-side validation with various input types. Verify that async validation rules work correctly. Test field dependency validation.",
+        "priority": "high",
+        "dependencies": [
+          51
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 53,
+        "title": "Develop Conditional Logic System",
+        "description": "Create a system for defining conditional logic to show/hide fields based on other field values.",
+        "details": "Implement a ConditionalLogicBuilder component for creating and editing conditions. Support various condition types: Equals, Not equals, Contains, Does not contain, Greater than, Less than, Is empty, Is not empty. Create a condition group system with AND/OR logic. Implement a visual condition builder with drag-and-drop support. Add a condition testing panel with sample data. Create a dependency graph to visualize relationships between fields. Implement condition evaluation using the formula parser engine. Add support for complex nested conditions. Create a condition library with common presets. Implement performance optimization for condition evaluation.",
+        "testStrategy": "Test conditional logic creation and editing. Verify that all condition types work correctly. Test condition groups with AND/OR logic. Verify that the visual condition builder works with drag-and-drop. Test the condition testing panel with sample data. Verify that the dependency graph correctly visualizes relationships. Test condition evaluation with various field values. Verify that complex nested conditions work correctly. Test the condition library presets. Verify performance with many conditions.",
+        "priority": "high",
+        "dependencies": [
+          43,
+          51
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 54,
+        "title": "Implement WYSIWYG Email Template Builder",
+        "description": "Create a WYSIWYG editor for building email templates with shortcode support.",
+        "details": "Integrate a WYSIWYG editor like TinyMCE (v6.4.2 or latest) or Quill (v1.3.7 or latest). Implement email template sections (header, body, footer). Create a responsive email layout system using tables for compatibility. Add email-specific styling options that work across email clients. Implement shortcode insertion for dynamic content. Create a template library with common email layouts. Add image upload and management within the editor. Implement template preview with sample data. Create a HTML/CSS code editor for advanced users. Add support for email client testing previews. Implement template versioning and history.",
+        "testStrategy": "Test the WYSIWYG editor functionality. Verify that email template sections can be edited. Test the responsive email layout system on different screen sizes. Verify that email-specific styling works across email clients. Test shortcode insertion for dynamic content. Verify that the template library provides useful layouts. Test image upload and management within the editor. Verify that template preview works with sample data. Test the HTML/CSS code editor for advanced users. Verify email client testing previews. Test template versioning and history.",
+        "priority": "medium",
+        "dependencies": [
+          48
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 55,
+        "title": "Create Shortcode System for Email Templates",
+        "description": "Develop a shortcode system for inserting dynamic content into email templates.",
+        "details": "Implement a ShortcodeManager component for creating and managing shortcodes. Create a shortcode insertion button in the email editor. Implement shortcode parsing and rendering. Support various shortcode types: Form field values, Calculated values from formulas, User information, System data (date, time), Conditional content. Create a shortcode preview system with sample data. Add shortcode documentation with examples. Implement shortcode validation to prevent errors. Create a shortcode library with common presets. Add support for nested shortcodes. Implement performance optimization for shortcode rendering.",
+        "testStrategy": "Test shortcode creation and management. Verify that shortcode insertion works in the email editor. Test shortcode parsing and rendering with various data. Verify that all shortcode types work correctly. Test the shortcode preview system with sample data. Verify that shortcode documentation is accurate. Test shortcode validation with invalid inputs. Verify that the shortcode library provides useful presets. Test nested shortcodes. Verify performance with many shortcodes.",
+        "priority": "high",
+        "dependencies": [
+          43,
+          54
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 56,
+        "title": "Integrate Resend Email Service",
+        "description": "Integrate the Resend email service for processing and sending email templates with shortcodes.",
+        "details": "Set up Resend API client using resend (v0.15.1 or latest). Implement email template processing with shortcode substitution. Create an email preview system before sending. Add email sending functionality with proper error handling. Implement email tracking and analytics. Create an email log for sent messages. Add support for email attachments. Implement email scheduling for delayed sending. Create email personalization with recipient data. Add support for email templates in different languages. Implement A/B testing for email templates.",
+        "testStrategy": "Test Resend API integration with various email templates. Verify that shortcode substitution works correctly. Test the email preview system. Verify that email sending works with proper error handling. Test email tracking and analytics. Verify that the email log records sent messages. Test email attachments with different file types. Verify that email scheduling works for delayed sending. Test email personalization with recipient data. Verify that email templates work in different languages. Test A/B testing for email templates.",
+        "priority": "medium",
+        "dependencies": [
+          55
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 57,
+        "title": "Implement Preview & Test Mode",
+        "description": "Create a preview and test mode for live calculator testing with sample data.",
+        "details": "Implement a PreviewMode component that renders the form as it would appear to end users. Create a test data generator for populating form fields. Add a step-by-step navigation system for multi-step forms. Implement real-time formula calculation in preview mode. Create a debug panel showing calculation steps and variable values. Add support for different test scenarios with predefined data sets. Implement form submission testing that shows the final output. Create a responsive preview that simulates different devices. Add performance monitoring in test mode. Implement user interaction recording for testing user flows.",
+        "testStrategy": "Test the preview mode with various form configurations. Verify that test data generation works for different field types. Test step-by-step navigation in multi-step forms. Verify that real-time formula calculation works in preview mode. Test the debug panel with complex calculations. Verify that test scenarios work with predefined data sets. Test form submission in preview mode. Verify that the responsive preview accurately simulates different devices. Test performance monitoring in complex forms. Verify that user interaction recording works for testing flows.",
+        "priority": "high",
+        "dependencies": [
+          41,
+          42,
+          43
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 58,
+        "title": "Create Sample Data Generator",
+        "description": "Develop a system for generating realistic sample data for testing calculators.",
+        "details": "Implement a SampleDataGenerator component for creating and managing test data sets. Support various data types: Text (names, addresses, lorem ipsum), Numbers (integers, decimals, ranges), Dates (random, ranges, relative), Boolean values, Selection from lists, File placeholders. Create predefined data profiles for common testing scenarios. Add support for data relationships (e.g., consistent data across related fields). Implement data randomization with seeds for reproducibility. Create a data preview system. Add support for importing test data from CSV or JSON. Implement data generation rules based on field validation constraints. Create a test data library with common data sets.",
+        "testStrategy": "Test sample data generation for different field types. Verify that predefined data profiles work for common scenarios. Test data relationships across related fields. Verify that data randomization works with seeds for reproducibility. Test the data preview system. Verify that importing test data works from CSV and JSON. Test data generation rules with field validation constraints. Verify that the test data library provides useful data sets.",
+        "priority": "medium",
+        "dependencies": [
+          57
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 59,
+        "title": "Implement Visual Element Trigger System",
+        "description": "Create a system for triggering visual elements based on form values and conditions.",
+        "details": "Implement a TriggerManager component for creating and managing visual element triggers. Support various trigger types: Field value changes, Formula calculation results, Form navigation events, Timed events, User interactions. Create a visual trigger builder with condition configuration. Implement trigger actions for visual elements (show, hide, animate, style change). Add support for trigger chaining and sequences. Create a trigger testing panel with sample data. Implement trigger logging for debugging. Add performance optimization for trigger evaluation. Create a trigger library with common presets. Implement trigger analytics to track which triggers are activated most often.",
+        "testStrategy": "Test trigger creation and management for visual elements. Verify that all trigger types work correctly. Test the visual trigger builder with condition configuration. Verify that trigger actions work for visual elements. Test trigger chaining and sequences. Verify that the trigger testing panel works with sample data. Test trigger logging for debugging purposes. Verify performance with many triggers. Test the trigger library presets. Verify that trigger analytics correctly track activations.",
+        "priority": "high",
+        "dependencies": [
+          50,
+          53
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 60,
+        "title": "Develop Multi-step Form Navigation System",
+        "description": "Create a system for navigating between multiple steps in a form with progress tracking.",
+        "details": "Implement a FormNavigation component for managing multi-step forms. Create step configuration with titles, descriptions, and icons. Add navigation controls (next, previous, jump to step). Implement progress tracking with visual indicators. Create conditional navigation based on form values. Add support for step validation before proceeding. Implement step visibility rules based on conditions. Create a step summary/overview component. Add support for saving progress and resuming later. Implement analytics for step completion rates and time spent. Create a navigation history for tracking user path through the form.",
+        "testStrategy": "Test multi-step form navigation with various configurations. Verify that step configuration works with titles, descriptions, and icons. Test navigation controls for moving between steps. Verify that progress tracking works with visual indicators. Test conditional navigation based on form values. Verify that step validation works before proceeding. Test step visibility rules with different conditions. Verify that the step summary component shows accurate information. Test saving progress and resuming later. Verify that analytics track step completion rates and time spent. Test navigation history for user path tracking.",
+        "priority": "high",
+        "dependencies": [
+          41,
+          53
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 61,
+        "title": "Implement Form Submission and Results Display",
+        "description": "Create a system for handling form submissions and displaying calculation results.",
+        "details": "Implement a FormSubmission component for processing form data. Create a results display component with various visualization options (text, tables, charts). Add support for conditional result displays based on calculation outcomes. Implement result sharing via email or link. Create a PDF generation feature for results using libraries like jsPDF (v2.5.1 or latest) and html2canvas (v1.4.1 or latest). Add result history for comparing multiple submissions. Implement result analytics and statistics. Create a result export feature (CSV, JSON, Excel) using libraries like xlsx (v0.18.5 or latest). Add support for custom result templates. Implement webhook integration for sending results to external systems.",
+        "testStrategy": "Test form submission with various data inputs. Verify that results display correctly with different visualization options. Test conditional result displays based on calculation outcomes. Verify that result sharing works via email and links. Test PDF generation for results. Verify that result history allows comparing multiple submissions. Test result analytics and statistics. Verify that result export works in different formats. Test custom result templates. Verify that webhook integration sends data to external systems.",
+        "priority": "high",
+        "dependencies": [
+          43,
+          57
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 62,
+        "title": "Create Calculator Settings and Configuration Panel",
+        "description": "Develop a panel for configuring global calculator settings and behavior.",
+        "details": "Implement a CalculatorSettings component for managing global configuration. Create sections for different setting categories (general, appearance, behavior, advanced). Add controls for general settings (calculator name, description, version). Implement appearance settings (theme, colors, fonts, layout). Create behavior settings (auto-save, validation timing, calculation mode). Add advanced settings (custom CSS, JavaScript hooks, API integration). Implement settings import/export functionality. Create a settings history/versioning system. Add setting presets for quick configuration. Implement setting search and filtering. Create setting documentation with explanations and examples.",
+        "testStrategy": "Test calculator settings with various configurations. Verify that all setting categories work correctly. Test general setting controls. Verify that appearance settings change the calculator look. Test behavior settings with different options. Verify that advanced settings like custom CSS work correctly. Test settings import/export functionality. Verify that settings history/versioning works. Test setting presets for quick configuration. Verify that setting search and filtering works. Test setting documentation for accuracy.",
+        "priority": "medium",
+        "dependencies": [
+          41,
+          51
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 63,
+        "title": "Implement Calculator Version Control and Publishing",
+        "description": "Create a system for managing calculator versions and publishing to production.",
+        "details": "Implement a VersionControl component for managing calculator versions. Create a versioning system with major, minor, and patch levels. Add support for version notes and change logs. Implement draft/published status for calculators. Create a publishing workflow with approval steps. Add support for scheduled publishing. Implement version comparison to see changes between versions. Create a rollback feature for reverting to previous versions. Add version branching for A/B testing. Implement version analytics to track usage of different versions. Create a version archive for storing old calculator versions.",
+        "testStrategy": "Test version control with various calculator changes. Verify that versioning works with major, minor, and patch levels. Test version notes and change logs. Verify that draft/published status works correctly. Test the publishing workflow with approval steps. Verify that scheduled publishing works at the specified time. Test version comparison between different versions. Verify that rollback works for reverting to previous versions. Test version branching for A/B testing. Verify that version analytics track usage correctly. Test the version archive for accessing old versions.",
+        "priority": "medium",
+        "dependencies": [
+          62
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-19T11:22:14.866Z",
+      "updated": "2025-08-19T11:53:11.882Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

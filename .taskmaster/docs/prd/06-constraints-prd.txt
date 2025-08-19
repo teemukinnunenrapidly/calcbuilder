@@ -1,0 +1,26 @@
+### 21. Assumptions, Constraints, and Dependencies
+
+#### 21.1 Technical Assumptions  
+- Supabase can handle 10,000 concurrent users
+- CDN availability of 99.9%
+- React ecosystem stability
+- Browser storage APIs remain supported
+
+#### 21.2 Constraints
+- Initial development budget: €XXX,XXX
+- Team size: X developers, X designers
+- MVP delivery: 2 months from start
+- Monthly infrastructure cost cap: €X,XXX
+
+#### 21.3 External Dependencies
+- Supabase (critical - database, auth, storage)
+- Resend (high - email delivery)
+- Hetzner Cloud (critical - hosting)
+- Cloudflare (medium - CDN)
+- npm registry (high - package management)
+
+#### 21.4 Risks & Mitigation
+- Risk: Supabase service disruption
+  Mitigation: Backup database strategy, multi-region setup
+- Risk: Low market adoption
+  Mitigation: Free tier, aggressive marketing, partnerships

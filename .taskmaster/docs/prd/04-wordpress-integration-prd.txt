@@ -1,0 +1,33 @@
+04-end-user-interface-prd.txt
+Part 4: End-User Interface & WordPress Integration
+Description: Create the public-facing calculator interface with responsive design, accessibility features, and WordPress embedding capabilities.
+Core Features:
+
+Calculator Renderer - Multi-step form display, progress indicators, navigation
+Responsive Calculator UI - Mobile/tablet/desktop layouts, touch optimization
+WordPress Integration - Embed scripts, shortcode support, dedicated pages
+Localization System - Multi-language support with react-i18next
+Accessibility Implementation - WCAG 2.1 AA compliance, keyboard navigation
+Visual Element Display - Sidebar/modal rendering, image carousels
+
+Technical Implementation:
+
+Public React App - Separate bundle for end-user calculator
+Embed Script - JavaScript snippet for WordPress integration
+i18n Configuration - Language files, number/date formatting
+Progressive Enhancement - Works without JavaScript, enhanced with it
+
+Dependencies:
+
+Part 1 (Core Infrastructure) must be complete
+Part 3 (Calculator Builder) must be complete
+
+Testing Strategy:
+Cross-browser testing with Playwright, accessibility audit with axe-core, responsive design testing, and WordPress embedding verification.
+Success Criteria:
+
+Calculator renders correctly on all devices
+WordPress embedding works with shortcode
+Accessibility score >90 in Lighthouse
+Supports 3+ languages
+All form validations working
