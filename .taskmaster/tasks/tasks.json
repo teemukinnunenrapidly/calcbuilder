@@ -15,14 +15,12 @@
       {
         "id": 4,
         "title": "Implement Authentication with Supabase Auth",
-        "description": "Set up authentication system using Supabase Auth with email/password and social login options.",
-        "details": "Configure Supabase Auth with email/password authentication. Add social login providers (Google, GitHub) for convenience. Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD.",
-        "testStrategy": "Test user registration with email verification. Verify login functionality with both email/password and social providers. Test password reset flow. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates.",
-        "priority": "high",
-        "dependencies": [
-          1
-        ],
+        "description": "Set up authentication system using Supabase Auth with email/password authentication.",
         "status": "pending",
+        "dependencies": [1],
+        "priority": "high",
+        "details": "Configure Supabase Auth with email/password authentication. Create React context for authentication state management. Implement protected routes using React Router. Create login, registration, password reset, and email verification pages. Implement JWT token handling and refresh logic. Create user profile management page. Set up role-based access control for different user types (Platform Administrator, Client Administrator) as defined in section 3 of the PRD.",
+        "testStrategy": "Test user registration with email verification. Verify login functionality with email/password. Test password reset flow. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates.",
         "subtasks": []
       },
       {
@@ -32,10 +30,7 @@
         "details": "Implement CRUD operations for companies table. Create company profile page with branding settings (logo, colors). Implement domain verification for white-labeling. Create company settings page for configuring default language, timezone, and other preferences. Implement team member management with invitations and role assignment. Create company dashboard with key metrics. Implement storage for company assets (logos, images) using Supabase Storage.",
         "testStrategy": "Test creating, reading, updating, and deleting company records. Verify branding settings are correctly saved and applied. Test domain verification process. Verify team member invitation and role assignment. Test company dashboard displays correct metrics. Verify company assets are correctly stored and retrieved from Supabase Storage.",
         "priority": "high",
-        "dependencies": [
-          1,
-          4
-        ],
+        "dependencies": [1, 4],
         "status": "pending",
         "subtasks": []
       },
@@ -46,11 +41,7 @@
         "details": "Create responsive sidebar navigation with all sections defined in 17.3. Implement dashboard overview with metrics from section 6.1 (total calculators, leads, conversion rates, etc.). Create activity feed component for recent actions. Implement responsive layouts for different screen sizes following the breakpoint strategy in 17.6. Use shadcn/ui components for UI elements following the documentation verification protocol. Implement keyboard navigation and shortcuts as defined in 17.7.",
         "testStrategy": "Verify all navigation items are present and correctly linked. Test responsive behavior at different breakpoints. Ensure dashboard metrics display correctly with sample data. Test keyboard navigation and shortcuts. Verify accessibility compliance using axe-core. Test activity feed updates with new actions.",
         "priority": "medium",
-        "dependencies": [
-          2,
-          4,
-          5
-        ],
+        "dependencies": [2, 4, 5],
         "status": "pending",
         "subtasks": []
       },
@@ -61,10 +52,7 @@
         "details": "Implement drag-and-drop functionality using @dnd-kit library. Create components for all field types: number inputs, dropdowns, radio buttons, checkboxes, sliders, date pickers, text inputs, and buttons. Implement field configuration panel for setting labels, placeholders, validation rules, conditional visibility, help text, and required/optional settings. Create form section management for organizing fields into logical groups. Implement real-time preview of the form being built. Add undo/redo functionality for form editing actions.",
         "testStrategy": "Test dragging and dropping different field types onto the form canvas. Verify field configuration options work correctly. Test conditional visibility rules. Verify form sections can be created, edited, and reordered. Test the real-time preview updates as changes are made. Verify undo/redo functionality works for all form editing actions. Test accessibility of the form builder interface.",
         "priority": "high",
-        "dependencies": [
-          2,
-          6
-        ],
+        "dependencies": [2, 6],
         "status": "pending",
         "subtasks": []
       },
@@ -75,9 +63,7 @@
         "details": "Implement drag-and-drop formula components using @dnd-kit. Create visual representation of mathematical operations. Implement variable picker to select form fields. Create components for all available functions: basic math, conditionals, comparisons, rounding, financial, and statistical. Implement real-time formula preview with test values. Create formula validation to prevent syntax errors. Implement shortcode management system for storing and retrieving formulas.",
         "testStrategy": "Test creating formulas with different operations and functions. Verify variables can be selected from form fields. Test real-time preview with different test values. Verify formula validation catches syntax errors. Test saving and loading formulas as shortcodes. Verify complex formulas with nested operations work correctly.",
         "priority": "high",
-        "dependencies": [
-          7
-        ],
+        "dependencies": [7],
         "status": "pending",
         "subtasks": []
       },
@@ -88,10 +74,7 @@
         "details": "Implement CRUD operations for visual elements. Create components for different types: static images, image carousels, dynamic images, infographics, and videos. Implement display mode configuration: sidebar, modal, and inline. Create conditional display rules based on input values. Implement image upload and management using Supabase Storage. Create visual element preview in the builder interface.",
         "testStrategy": "Test creating, updating, and deleting visual elements. Verify different types of visual elements display correctly. Test conditional display rules with different input values. Verify image upload and storage functionality. Test visual element preview in the builder interface. Verify responsive behavior of visual elements on different screen sizes.",
         "priority": "medium",
-        "dependencies": [
-          5,
-          7
-        ],
+        "dependencies": [5, 7],
         "status": "pending",
         "subtasks": []
       },
@@ -102,9 +85,7 @@
         "details": "Implement WYSIWYG email editor with drag-and-drop components. Create shortcode insertion functionality to include calculated values. Implement conditional content blocks based on calculator values. Create email template management system for storing multiple templates per calculator. Implement email preview functionality showing how the email will look in different email clients. Integrate with Resend email service for sending emails.",
         "testStrategy": "Test creating and editing email templates with the WYSIWYG editor. Verify shortcodes can be inserted and are correctly replaced with values. Test conditional content blocks with different conditions. Verify multiple templates can be managed per calculator. Test email preview in different simulated email clients. Verify emails are correctly sent through Resend service.",
         "priority": "medium",
-        "dependencies": [
-          8
-        ],
+        "dependencies": [8],
         "status": "pending",
         "subtasks": []
       },
@@ -115,10 +96,7 @@
         "details": "Configure react-i18next for internationalization. Create translation files for admin panel in all supported languages: English, Finnish, Swedish, German, French, and Spanish. Implement language switcher component. Create system for managing calculator content in multiple languages. Implement automatic number and date formatting based on locale. Create translation management interface for clients to manage their calculator content in different languages.",
         "testStrategy": "Verify admin panel displays correctly in all supported languages. Test language switcher functionality. Verify calculator content can be created and displayed in different languages. Test automatic number and date formatting with different locales. Verify translation management interface allows editing content in multiple languages.",
         "priority": "medium",
-        "dependencies": [
-          6,
-          7
-        ],
+        "dependencies": [6, 7],
         "status": "pending",
         "subtasks": []
       },
@@ -129,11 +107,7 @@
         "details": "Implement real-time calculator preview as it's being built. Create test mode for trying out calculator functionality with sample data. Implement formula debugging tools to inspect calculation results. Create responsive preview to test calculator on different device sizes. Implement form validation testing to verify all validation rules work correctly. Create performance monitoring for calculator execution time.",
         "testStrategy": "Verify preview updates in real-time as changes are made to the calculator. Test calculator functionality with different input values. Verify formula debugging tools correctly show intermediate calculation results. Test responsive preview on different simulated device sizes. Verify form validation rules are correctly applied and error messages displayed.",
         "priority": "medium",
-        "dependencies": [
-          7,
-          8,
-          9
-        ],
+        "dependencies": [7, 8, 9],
         "status": "pending",
         "subtasks": []
       },
@@ -144,10 +118,7 @@
         "details": "Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel. Implement basic CRM integration capabilities via webhooks.",
         "testStrategy": "Test lead capture from calculator submissions. Verify leads appear in the management interface. Test searching and filtering leads. Verify lead export to CSV/Excel works correctly. Test lead detail view displays all information. Verify email functionality correctly sends messages to leads. Test webhook integration with sample CRM system.",
         "priority": "high",
-        "dependencies": [
-          5,
-          10
-        ],
+        "dependencies": [5, 10],
         "status": "pending",
         "subtasks": []
       },
@@ -158,10 +129,7 @@
         "details": "Implement Plausible Analytics integration for privacy-friendly tracking. Create dashboard for calculator performance metrics from section 12.2: completion rate, drop-off points, average time to complete, device breakdown. Implement lead conversion analytics. Create visualization components using Tremor for charts and graphs. Implement date range filtering for analytics data. Create export functionality for analytics reports.",
         "testStrategy": "Verify Plausible Analytics correctly tracks user interactions. Test analytics dashboard displays correct metrics with sample data. Verify visualizations render correctly with different data sets. Test date range filtering updates the displayed metrics. Verify analytics export functionality produces correct reports.",
         "priority": "medium",
-        "dependencies": [
-          12,
-          13
-        ],
+        "dependencies": [12, 13],
         "status": "pending",
         "subtasks": []
       },
@@ -172,12 +140,7 @@
         "details": "Create template management system for storing and categorizing calculator templates. Implement templates for different industries: energy, real estate, automotive, insurance, finance, and e-commerce. Create template preview functionality. Implement template application process to create new calculator from template. Create template customization interface for adapting templates to specific needs.",
         "testStrategy": "Verify templates are correctly categorized by industry. Test template preview functionality. Verify new calculators can be created from templates. Test template customization to ensure all aspects can be modified. Verify templates include all necessary components: form fields, formulas, visual elements, and email templates.",
         "priority": "medium",
-        "dependencies": [
-          7,
-          8,
-          9,
-          10
-        ],
+        "dependencies": [7, 8, 9, 10],
         "status": "pending",
         "subtasks": []
       },
@@ -188,9 +151,7 @@
         "details": "Create WordPress plugin with calculator embedding functionality. Implement shortcode support: [calcbuilder id=\"calculator-id\"]. Create Gutenberg block for visual embedding. Implement different display modes: full page, inline, modal, and sidebar widget. Create settings page for API configuration and default options. Implement calculator synchronization between platform and WordPress. Create styling options to match calculator with WordPress theme.",
         "testStrategy": "Test plugin installation and activation in WordPress. Verify shortcode correctly embeds calculator. Test Gutenberg block functionality. Verify different display modes work correctly. Test settings page saves and applies configuration. Verify calculator synchronization updates when changes are made in the platform. Test styling options correctly modify calculator appearance.",
         "priority": "medium",
-        "dependencies": [
-          12
-        ],
+        "dependencies": [12],
         "status": "pending",
         "subtasks": []
       },
@@ -201,9 +162,7 @@
         "details": "Implement REST API endpoints for calculator data. Create JavaScript SDK for embedding calculators on any website. Implement authentication and authorization for API access. Create documentation for API usage. Implement CORS configuration for cross-domain requests. Create embed.js script for easy embedding as shown in section 7.1. Implement customization options via data attributes.",
         "testStrategy": "Test API endpoints return correct calculator data. Verify JavaScript SDK correctly renders calculator on sample websites. Test authentication and authorization for API access. Verify CORS configuration allows requests from authorized domains. Test embed.js script works with different configuration options. Verify customization via data attributes correctly modifies calculator appearance.",
         "priority": "medium",
-        "dependencies": [
-          12
-        ],
+        "dependencies": [12],
         "status": "pending",
         "subtasks": []
       },
@@ -214,10 +173,7 @@
         "details": "Create cookie consent management system. Implement data access functionality for users to request their data. Create data deletion capability for right to be forgotten. Implement data portability with export in machine-readable format. Create automatic data anonymization after retention period. Implement privacy policy generator for calculators. Create data processing agreement templates.",
         "testStrategy": "Verify cookie consent banner displays and correctly manages consent. Test data access request functionality. Verify data deletion correctly removes all user data. Test data export for portability. Verify automatic anonymization works after configured retention period. Test privacy policy generator creates compliant policies.",
         "priority": "high",
-        "dependencies": [
-          4,
-          13
-        ],
+        "dependencies": [4, 13],
         "status": "pending",
         "subtasks": []
       },
@@ -228,10 +184,7 @@
         "details": "Implement multi-layer validation using Zod on frontend and backend. Create XSS protection using DOMPurify for user inputs. Implement SQL injection prevention with parameterized queries. Create rate limiting for API endpoints and calculator submissions. Implement CSRF protection for form submissions. Create security headers configuration for Nginx. Implement audit logging for security-relevant actions.",
         "testStrategy": "Test input validation catches invalid data. Verify XSS protection prevents script injection. Test SQL injection prevention with attack patterns. Verify rate limiting blocks excessive requests. Test CSRF protection prevents cross-site request forgery. Verify security headers are correctly set. Test audit logging records security events.",
         "priority": "high",
-        "dependencies": [
-          4,
-          17
-        ],
+        "dependencies": [4, 17],
         "status": "pending",
         "subtasks": []
       },
@@ -242,10 +195,7 @@
         "details": "Integrate with payment processor (Stripe recommended). Implement subscription plans for Starter, Professional, and Enterprise tiers. Create billing management interface for clients. Implement usage tracking for leads and calculators. Create automatic billing based on usage. Implement plan upgrade/downgrade functionality. Create invoice generation and management.",
         "testStrategy": "Test subscription creation with different plans. Verify billing management interface correctly displays subscription information. Test usage tracking accurately counts leads and calculators. Verify automatic billing charges correct amounts based on usage. Test plan upgrade and downgrade functionality. Verify invoice generation creates correct invoices.",
         "priority": "medium",
-        "dependencies": [
-          5,
-          13
-        ],
+        "dependencies": [5, 13],
         "status": "pending",
         "subtasks": []
       },
@@ -256,10 +206,7 @@
         "details": "Implement step-by-step onboarding wizard for new users. Create interactive tutorials for key features. Implement contextual help with tooltips and popovers. Create template selection as first step in onboarding. Implement progress tracking for onboarding completion. Create sample data generation for testing. Implement onboarding completion celebration.",
         "testStrategy": "Test onboarding flow guides users through all steps. Verify interactive tutorials correctly demonstrate features. Test contextual help provides relevant information. Verify template selection offers appropriate options. Test progress tracking accurately shows completion status. Verify sample data generation creates realistic test data.",
         "priority": "medium",
-        "dependencies": [
-          6,
-          15
-        ],
+        "dependencies": [6, 15],
         "status": "pending",
         "subtasks": []
       },
@@ -270,13 +217,7 @@
         "details": "Create getting started guide with step-by-step instructions. Produce video tutorials for key features. Implement API documentation with interactive examples. Create template library documentation. Write best practices guide for calculator creation. Implement in-app help system with contextual assistance. Create knowledge base with searchable articles.",
         "testStrategy": "Verify getting started guide covers all essential steps. Test video tutorials play correctly and demonstrate features. Verify API documentation includes all endpoints with examples. Test in-app help system provides relevant assistance in context. Verify knowledge base search returns appropriate articles.",
         "priority": "low",
-        "dependencies": [
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
+        "dependencies": [6, 7, 8, 9, 10],
         "status": "pending",
         "subtasks": []
       },
@@ -287,10 +228,7 @@
         "details": "Integrate chat support system (Intercom recommended). Implement email support ticket management. Create community forum for user discussions. Implement knowledge base integration with support systems. Create support request routing based on issue type. Implement support analytics for common issues and resolution times.",
         "testStrategy": "Test chat support integration appears correctly in the app. Verify email support tickets are created and managed properly. Test community forum functionality for posting and replying. Verify knowledge base integration suggests relevant articles. Test support request routing directs issues to appropriate channels.",
         "priority": "low",
-        "dependencies": [
-          6,
-          22
-        ],
+        "dependencies": [6, 22],
         "status": "pending",
         "subtasks": []
       },
@@ -301,9 +239,7 @@
         "details": "Provision Hetzner Cloud CX21 server (2 vCPU, 4GB RAM) in Helsinki, Finland (HEL1-DC2). Install Ubuntu 22.04 LTS. Configure Docker and Docker Compose for production. Set up Nginx as reverse proxy. Configure Let's Encrypt for SSL certificates with automatic renewal. Set up Cloudflare CDN for static assets. Implement backup system for database and user uploads. Create monitoring and alerting system.",
         "testStrategy": "Verify server provisioning with correct specifications. Test Docker containers run correctly in production environment. Verify Nginx correctly routes requests and serves static assets. Test SSL certificates are issued and automatically renewed. Verify Cloudflare CDN correctly caches static assets. Test backup system successfully backs up and restores data. Verify monitoring system alerts on issues.",
         "priority": "high",
-        "dependencies": [
-          3
-        ],
+        "dependencies": [3],
         "status": "pending",
         "subtasks": []
       },
@@ -314,10 +250,7 @@
         "details": "Set up GitHub Actions or similar CI/CD service. Implement automated testing for frontend and backend. Create build pipeline for production assets. Implement automated deployment to staging environment. Create production deployment process with approval step. Implement database migration system. Set up automated performance and accessibility testing in CI pipeline.",
         "testStrategy": "Verify CI pipeline runs tests on pull requests. Test build pipeline creates optimized production assets. Verify staging deployment works automatically on merge to development branch. Test production deployment process with approval step. Verify database migrations run correctly during deployment. Test performance and accessibility checks in CI pipeline.",
         "priority": "medium",
-        "dependencies": [
-          2,
-          24
-        ],
+        "dependencies": [2, 24],
         "status": "pending",
         "subtasks": []
       },
@@ -329,7 +262,7 @@
         "testStrategy": "Verify the project builds without errors. Test that Tailwind CSS is correctly configured by applying some utility classes. Ensure shadcn/ui components render correctly. Validate TypeScript configuration by intentionally introducing type errors and confirming they're caught. Test that all required dependencies are correctly installed and can be imported.",
         "priority": "high",
         "dependencies": [],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -344,9 +277,7 @@
             "id": 2,
             "title": "Configure Tailwind CSS and Design System",
             "description": "Install and configure Tailwind CSS with the color palette and design tokens from section 17.5 of the PRD.",
-            "dependencies": [
-              "2.1"
-            ],
+            "dependencies": ["2.1"],
             "details": "Install Tailwind CSS and its dependencies. Create tailwind.config.js with custom color palette and design tokens as specified in section 17.5. Set up PostCSS configuration. Create global CSS file with Tailwind directives. Configure theme extension for custom spacing, typography, and breakpoints.",
             "status": "done",
             "testStrategy": "Verify Tailwind CSS is correctly configured by applying utility classes to test components. Confirm custom color palette and design tokens are accessible in the application."
@@ -355,37 +286,27 @@
             "id": 3,
             "title": "Set Up shadcn/ui Components",
             "description": "Install and configure shadcn/ui components following the documentation verification protocol in section 17.10.",
-            "dependencies": [
-              "2.1",
-              "2.2"
-            ],
+            "dependencies": ["2.1", "2.2"],
             "details": "Install shadcn/ui CLI and required dependencies. Configure component installation directory. Add necessary shadcn/ui components according to the project requirements. Customize component themes to match the design system. Create a component showcase page to verify proper installation and styling.",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "Ensure shadcn/ui components render correctly with proper styling. Verify component customization works as expected. Test component interactions and states (hover, focus, disabled)."
           },
           {
             "id": 4,
             "title": "Configure Code Quality Tools",
             "description": "Set up ESLint and Prettier for code quality and consistent formatting.",
-            "dependencies": [
-              "2.1"
-            ],
+            "dependencies": ["2.1"],
             "details": "Install ESLint, Prettier, and related plugins. Create configuration files (.eslintrc.js, .prettierrc) with project-specific rules. Set up TypeScript-specific linting rules. Configure VS Code settings for the project. Add lint and format scripts to package.json. Set up pre-commit hooks using husky and lint-staged.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Run linting on existing code to verify configuration. Test formatting on sample files. Verify pre-commit hooks prevent committing code that doesn't meet quality standards."
           },
           {
             "id": 5,
             "title": "Install Required Dependencies and Finalize Project Structure",
             "description": "Install all required dependencies and set up the directory structure following best practices for component organization.",
-            "dependencies": [
-              "2.1",
-              "2.2",
-              "2.3",
-              "2.4"
-            ],
+            "dependencies": ["2.1", "2.2", "2.3", "2.4"],
             "details": "Install required dependencies: React Hook Form, Zod, @dnd-kit, Tremor, react-i18next, and Plausible analytics. Set up directory structure for components, hooks, utils, pages, and assets. Create README.md with project setup instructions. Configure environment variables. Set up initial routing structure. Create sample components to verify all dependencies work correctly.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify all dependencies are correctly installed and can be imported. Test sample implementations of key libraries. Ensure the project structure follows the defined organization pattern. Verify the application builds and runs with all dependencies integrated."
           }
         ]
@@ -397,16 +318,14 @@
         "details": "Create a Dockerfile for the application based on Node.js image. Set up Docker Compose with services for the frontend application, Supabase local development, and any other required services. Configure environment variables for development. Set up volume mappings for code hot-reloading. Configure networking between containers. Include Nginx as reverse proxy as specified in section 5.3 of the PRD.",
         "testStrategy": "Verify Docker containers start successfully with docker-compose up. Ensure all services can communicate with each other. Test hot-reloading functionality by making changes to the code. Verify Nginx reverse proxy correctly routes requests to the appropriate services.",
         "priority": "high",
-        "dependencies": [
-          "2"
-        ],
-        "status": "pending",
+        "dependencies": ["2"],
+        "status": "done",
         "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-08-19T12:44:20.651Z",
-      "updated": "2025-08-19T13:57:17.235Z",
+      "updated": "2025-08-19T17:09:53.549Z",
       "description": "Tasks for master context"
     }
   }

@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatCurrency(
   amount: number,
   currency: string = 'EUR',
-  locale: string = 'fi-FI',
+  locale: string = 'fi-FI'
 ): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
@@ -16,17 +16,14 @@ export function formatCurrency(
   }).format(amount);
 }
 
-export function formatPercentage(
-  value: number,
-  decimals: number = 2,
-): string {
+export function formatPercentage(value: number, decimals: number = 2): string {
   return `${value.toFixed(decimals)}%`;
 }
 
 export function formatDate(
   date: Date | string,
   locale: string = 'fi-FI',
-  options?: Intl.DateTimeFormatOptions,
+  options?: Intl.DateTimeFormatOptions
 ): string {
   const dateObj = typeof date === 'string' ? new Date(date) : date;
   return dateObj.toLocaleDateString(locale, options);
@@ -38,7 +35,7 @@ export function generateId(): string {
 
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number,
+  wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout;
   return (...args: Parameters<T>) => {
@@ -49,7 +46,7 @@ export function debounce<T extends (...args: any[]) => any>(
 
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
-  limit: number,
+  limit: number
 ): (...args: Parameters<T>) => void {
   let inThrottle: boolean;
   return (...args: Parameters<T>) => {
@@ -86,9 +83,7 @@ export function isEmpty(value: any): boolean {
 }
 
 export function toTitleCase(str: string): string {
-  return str.replace(/\w\S*/g, (txt) =>
-    txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
-  );
+  return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
 export function toKebabCase(str: string): string {
@@ -101,7 +96,7 @@ export function toKebabCase(str: string): string {
 export function toCamelCase(str: string): string {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
-      index === 0 ? word.toLowerCase() : word.toUpperCase(),
+      index === 0 ? word.toLowerCase() : word.toUpperCase()
     )
     .replace(/\s+/g, '');
 }
@@ -118,5 +113,5 @@ export function isValidPhoneNumber(phone: string): boolean {
 
 export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
-  return `${text.substr(0, maxLength).trim()  }...`;
+  return `${text.substr(0, maxLength).trim()}...`;
 }

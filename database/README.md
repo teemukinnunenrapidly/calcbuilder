@@ -7,6 +7,7 @@ This directory contains database migrations and setup files for the CalcBuilder 
 ### 1. Apply the Initial Schema
 
 **Option A: Using Supabase Dashboard (Recommended)**
+
 1. Go to your [Supabase Dashboard](https://app.supabase.com)
 2. Select your "CalcBuilder" project
 3. Navigate to the SQL Editor
@@ -14,6 +15,7 @@ This directory contains database migrations and setup files for the CalcBuilder 
 5. Click "Run" to execute the migration
 
 **Option B: Using Supabase CLI**
+
 ```bash
 # Install Supabase CLI if not already installed
 npm install -g supabase
@@ -31,6 +33,7 @@ supabase db push
 ### 2. Verify the Setup
 
 After running the migration, you should see these tables in your database:
+
 - `companies` - Multi-tenant company data
 - `users` - Company members and authentication
 - `calculators` - Calculator configurations
@@ -47,8 +50,8 @@ You can test the schema by running some sample queries:
 
 ```sql
 -- Check if all tables were created
-SELECT table_name FROM information_schema.tables 
-WHERE table_schema = 'public' 
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public'
 ORDER BY table_name;
 
 -- Test the sample data

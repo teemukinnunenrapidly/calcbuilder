@@ -24,7 +24,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
-    
+
     /* CalcBuilder Pro custom colors */
     --calcbuilder-50: 214 100% 97%;
     --calcbuilder-100: 214 95% 93%;
@@ -37,19 +37,19 @@
     --calcbuilder-800: 226 69% 41%;
     --calcbuilder-900: 224 71% 29%;
     --calcbuilder-950: 229 84% 19%;
-    
+
     /* Success colors */
     --success: 142 76% 36%;
     --success-foreground: 355 7% 97%;
-    
+
     /* Warning colors */
     --warning: 38 92% 50%;
     --warning-foreground: 48 96% 89%;
-    
+
     /* Error colors */
     --error: 0 84% 60%;
     --error-foreground: 0 0% 98%;
-    
+
     /* Chart colors for analytics */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -78,7 +78,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
-    
+
     /* CalcBuilder Pro dark mode colors */
     --calcbuilder-50: 229 84% 19%;
     --calcbuilder-100: 224 71% 29%;
@@ -91,19 +91,19 @@
     --calcbuilder-800: 213 97% 87%;
     --calcbuilder-900: 214 95% 93%;
     --calcbuilder-950: 214 100% 97%;
-    
+
     /* Success colors dark mode */
     --success: 142 70% 45%;
     --success-foreground: 144 70% 98%;
-    
+
     /* Warning colors dark mode */
     --warning: 38 95% 58%;
     --warning-foreground: 48 96% 89%;
-    
+
     /* Error colors dark mode */
     --error: 0 72% 51%;
     --error-foreground: 0 85% 97%;
-    
+
     /* Chart colors dark mode */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -117,10 +117,12 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
   /* Custom scrollbar */
@@ -152,7 +154,12 @@
   }
 
   /* Typography improvements */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-semibold tracking-tight;
   }
 
@@ -195,7 +202,9 @@
   }
 
   /* Form elements */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply transition-colors duration-200;
   }
 
@@ -254,15 +263,21 @@
 
   /* Shadow utilities */
   .shadow-soft {
-    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 2px 15px -3px rgba(0, 0, 0, 0.07),
+      0 10px 20px -2px rgba(0, 0, 0, 0.04);
   }
 
   .shadow-medium {
-    box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 4px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   .shadow-strong {
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 10px 40px -10px rgba(0, 0, 0, 0.15),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
 
   .shadow-glow {
@@ -286,15 +301,15 @@
   .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
   }
-  
+
   .btn-secondary {
     @apply border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
   }
-  
+
   .card {
     @apply bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
   }
-  
+
   .input-field {
     @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
   }
@@ -304,12 +319,12 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

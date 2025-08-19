@@ -1,168 +1,274 @@
 # CalcBuilder Pro
 
-A comprehensive calculator builder platform that allows users to create, customize, and embed interactive calculators in WordPress sites.
+Advanced Calculator Builder Platform for creating, managing, and deploying interactive calculators
+and forms.
 
-## 🚀 Project Overview
+## 🚀 Features
 
-CalcBuilder Pro is a multi-tenant SaaS platform that enables businesses to create custom calculators for their websites. The platform provides a drag-and-drop interface for building calculators, advanced formula parsing, and seamless WordPress integration.
+- **Interactive Calculator Builder** - Drag & drop interface for creating calculators
+- **Advanced Form Management** - Complex form handling with validation
+- **Real-time Analytics** - Track calculator usage and conversions
+- **Multi-tenant Architecture** - Support for multiple clients/companies
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **TypeScript** - Full type safety and modern development experience
 
-## 🏗️ Architecture
+## 🛠️ Tech Stack
 
-- **Frontend**: React.js with TypeScript, Tailwind CSS, and shadcn/ui
-- **Backend**: Supabase (PostgreSQL, Auth, Realtime, Storage, Edge Functions)
-- **Infrastructure**: Hetzner Cloud with Docker, Nginx, and Cloudflare CDN
-- **WordPress Integration**: Shortcodes and embed scripts for easy integration
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Forms**: React Hook Form, Zod validation
+- **Drag & Drop**: @dnd-kit
+- **Charts**: Tremor
+- **Internationalization**: react-i18next
+- **Database**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth
+- **Deployment**: Docker, Docker Compose
 
-## 📋 Project Status
+## 📋 Prerequisites
 
-- **Total Tasks**: 108
-- **Current Status**: All tasks in "pending" status
-- **Project Phase**: Planning and setup phase
-- **Task Management**: Using Task Master AI for project management
+- Node.js 18+
+- npm 9+ or yarn
+- Git
+- Docker & Docker Compose (for development)
 
-## 🎯 Key Features
+## 🚀 Quick Start
 
-### Core Infrastructure
-- Multi-tenant architecture with company isolation
-- Role-based access control (RBAC)
-- Real-time subscriptions and WebSocket support
-- Comprehensive API with Edge Functions
+### 1. Clone the repository
 
-### Admin Panel
-- Drag-and-drop calculator builder
-- User and company management
-- Lead tracking and analytics
-- Responsive design with mobile optimization
+```bash
+git clone <repository-url>
+cd calcbuilder-pro
+```
 
-### Calculator Builder
-- Visual formula editor with mathematical expression parsing
-- Conditional logic and validation rules
-- Template system and presets
-- Accessibility compliance (WCAG 2.1 AA)
+### 2. Install dependencies
 
-### WordPress Integration
-- Shortcode system for easy embedding
-- Responsive calculator interface
-- Multi-language support (i18n)
-- Progressive enhancement strategy
+```bash
+npm install
+```
 
-### Security & Compliance
-- GDPR compliance framework
-- Security headers and XSS protection
-- Rate limiting and SQL injection prevention
-- Comprehensive security testing
+### 3. Set up environment variables
 
-## 🛠️ Technology Stack
+```bash
+cp .env.example .env.local
+```
 
-### Frontend
-- **React.js** - UI framework
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first CSS
-- **shadcn/ui** - Component library
-- **Radix UI** - Accessible components
-- **React Hook Form** - Form handling
-- **Zod** - Schema validation
-- **@dnd-kit** - Drag and drop
-- **Tremor** - Analytics components
+Edit `.env.local` with your configuration:
 
-### Backend & Infrastructure
-- **Supabase** - Database, Auth, Realtime, Storage
-- **Hetzner Cloud** - Hosting infrastructure
-- **Docker** - Containerization
-- **Nginx** - Web server
-- **Cloudflare** - CDN and security
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
-### Development & Testing
-- **ESLint & Prettier** - Code quality
-- **Jest** - Unit testing
-- **Playwright** - E2E testing
-- **K6** - Load testing
-- **GitHub Actions** - CI/CD
+# Database
+DATABASE_URL=your_database_url
+
+# Authentication
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+
+# Email
+RESEND_API_KEY=your_resend_api_key
+SMTP_HOST=your_smtp_host
+SMTP_PORT=587
+SMTP_USER=your_smtp_user
+SMTP_PASS=your_smtp_password
+
+# Analytics
+PLAUSIBLE_DOMAIN=your_domain
+```
+
+### 4. Start development server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 5. Start with Docker (Alternative)
+
+```bash
+docker-compose up -d
+```
 
 ## 📁 Project Structure
 
 ```
-E1saasto/
-├── .taskmaster/           # Task Master AI project files
-│   ├── docs/             # Project documentation and PRDs
-│   ├── tasks/            # Generated task files
-│   ├── config.json       # Task Master configuration
-│   └── templates/        # Task Master templates
-├── .cursor/              # Cursor IDE configuration
-├── README.md             # This file
-├── .gitignore            # Git ignore rules
-└── [Future project files]
+src/
+├── app/                 # Next.js 14 app directory
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── forms/          # Form components
+│   ├── charts/         # Chart components
+│   └── layout/         # Layout components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility libraries
+├── services/           # API services
+├── store/              # State management
+├── types/              # TypeScript type definitions
+├── utils/              # Utility functions
+└── styles/             # Global styles and design system
 ```
 
-## 🚀 Getting Started
+## 🧪 Available Scripts
 
-### Prerequisites
-- Node.js 18+ and npm
-- Git
-- Docker (for local development)
-- Supabase account
-- Hetzner Cloud account
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
+- `npm run type-check` - Run TypeScript type checking
+- `npm test` - Run tests
+- `npm run test:watch` - Run tests in watch mode
 
-### Development Setup
-1. Clone the repository
-2. Install dependencies (when available)
-3. Configure environment variables
-4. Set up Supabase project
-5. Configure Task Master AI
+## 🔧 Development
 
-## 📊 Task Management
+### Code Quality
 
-This project uses Task Master AI for comprehensive task management. All 108 tasks are organized into logical sections:
+The project uses ESLint and Prettier for code quality:
 
-1. **Core Infrastructure** (Tasks 1-20)
-2. **Admin Panel** (Tasks 21-38)
-3. **Calculator Builder** (Tasks 39-63)
-4. **WordPress Integration** (Tasks 64-83)
-5. **Deployment & Security** (Tasks 84-98)
-6. **Constraints & Dependencies** (Tasks 99-108)
+- **ESLint**: Code linting and error detection
+- **Prettier**: Code formatting
+- **Husky**: Pre-commit hooks
+- **lint-staged**: Staged files linting
 
-### Current Status
-- **Ready to start**: 16 tasks (15%)
-- **Dependencies required**: 92 tasks (85%)
-- **High complexity**: 5 tasks (5%)
-- **Medium complexity**: 103 tasks (95%)
+### VS Code Setup
 
-## 🔗 Documentation
+Install recommended extensions:
 
-- **Official Docs**: [`.taskmaster/docs/official-docs.md`](.taskmaster/docs/official-docs.md)
-- **Task Overview**: [`.taskmaster/docs/task-overview-with-dependencies.txt`](.taskmaster/docs/task-overview-with-dependencies.txt)
-- **Master PRD**: [`.taskmaster/docs/calcpro_prd.md`](.taskmaster/docs/calcpro_prd.md)
+- ESLint
+- Prettier
+- Tailwind CSS IntelliSense
+- TypeScript Importer
 
-## 📈 Development Roadmap
+### Git Hooks
 
-### Phase 1: Foundation
-- Core infrastructure setup
-- Basic project configuration
-- Development environment
+Pre-commit hooks automatically:
 
-### Phase 2: Core Development
-- Admin panel implementation
-- Calculator builder core
-- WordPress integration foundation
+- Run ESLint on staged files
+- Format code with Prettier
+- Prevent commits with linting errors
 
-### Phase 3: Integration & Testing
-- End-to-end testing
-- Security validation
-- Performance optimization
+## 🐳 Docker Development
+
+### Start all services
+
+```bash
+docker-compose up -d
+```
+
+### View logs
+
+```bash
+docker-compose logs -f
+```
+
+### Stop services
+
+```bash
+docker-compose down
+```
+
+### Reset database
+
+```bash
+docker-compose down -v
+docker-compose up -d
+```
+
+## 📊 Database
+
+### Supabase Setup
+
+1. Create a new Supabase project
+2. Get your project URL and API keys
+3. Set up environment variables
+4. Run database migrations
+
+### Local Development
+
+```bash
+# Start Supabase locally
+supabase start
+
+# Apply migrations
+npm run db:migrate
+
+# Reset database
+npm run db:reset
+
+# Seed with sample data
+npm run db:seed
+```
+
+## 🌐 Internationalization
+
+The project supports multiple languages using react-i18next:
+
+- English (en) - Default
+- Finnish (fi) - Primary target language
+- Easy to add more languages
+
+## 🎨 Design System
+
+Built with Tailwind CSS and shadcn/ui:
+
+- **Colors**: Custom CalcBuilder Pro color palette
+- **Typography**: Display and body font families
+- **Spacing**: Consistent spacing scale
+- **Components**: Accessible, customizable UI components
+- **Animations**: Smooth transitions and micro-interactions
+
+## 🚀 Deployment
+
+### Production Build
+
+```bash
+npm run build
+npm run start
+```
+
+### Docker Production
+
+```bash
+docker build -t calcbuilder-pro .
+docker run -p 3000:3000 calcbuilder-pro
+```
+
+### Environment Variables
+
+Ensure all required environment variables are set in production.
 
 ## 🤝 Contributing
 
-This is a private project. For internal development, please follow the established patterns and use Task Master AI for task management.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
 
-## 📄 License
+## 📝 License
 
-Private project - All rights reserved.
+This project is proprietary software. All rights reserved.
 
-## 📞 Support
+## 🆘 Support
 
-For project-related questions, refer to the Task Master AI system and project documentation.
+For support and questions:
 
----
+- Create an issue in the repository
+- Contact the development team
+- Check the documentation
 
-*Last updated: 2025-08-19*
-*Generated by Task Master AI*
+## 🔄 Changelog
+
+### v0.1.0
+
+- Initial project setup
+- React + TypeScript + Tailwind CSS
+- shadcn/ui component library
+- Basic project structure
+- Code quality tools (ESLint, Prettier, Husky)
+- Docker development environment

@@ -3,22 +3,26 @@
 ## 🎨 Color Palette
 
 ### Primary Colors
+
 - **Primary (Blue)**: `#3b82f6` - Main brand color
 - **Primary Light**: `#60a5fa` - Hover states, highlights
 - **Primary Dark**: `#1d4ed8` - Active states, emphasis
 
 ### Secondary Colors
+
 - **Secondary (Gray)**: `#6b7280` - Supporting elements
 - **Secondary Light**: `#9ca3af` - Disabled states
 - **Secondary Dark**: `#374151` - Text, borders
 
 ### Semantic Colors
+
 - **Success**: `#22c55e` - Success messages, confirmations
 - **Warning**: `#f59e0b` - Warning messages, alerts
 - **Error**: `#ef4444` - Error messages, destructive actions
 - **Info**: `#3b82f6` - Information messages, links
 
 ### Neutral Colors
+
 - **Background**: `#ffffff` - Main background
 - **Surface**: `#f9fafb` - Card backgrounds
 - **Border**: `#e5e7eb` - Dividers, borders
@@ -29,6 +33,7 @@
 ## 📏 Spacing Scale
 
 ### Base Spacing
+
 - `0` - 0px
 - `1` - 0.25rem (4px)
 - `2` - 0.5rem (8px)
@@ -45,6 +50,7 @@
 - `32` - 8rem (128px)
 
 ### Extended Spacing
+
 - `18` - 4.5rem (72px)
 - `88` - 22rem (352px)
 - `128` - 32rem (512px)
@@ -59,11 +65,13 @@
 ## 🔤 Typography
 
 ### Font Families
+
 - **Primary**: Inter (system-ui fallback)
 - **Monospace**: JetBrains Mono
 - **Display**: Inter (for headings)
 
 ### Font Sizes
+
 - **xs**: 0.75rem (12px) - Captions, labels
 - **sm**: 0.875rem (14px) - Small text
 - **base**: 1rem (16px) - Body text
@@ -79,11 +87,13 @@
 - **9xl**: 8rem (128px) - Extra large display headings
 
 ### Display Fonts
+
 - **display**: 4.5rem (72px) - Main display text
 - **display-sm**: 3.75rem (60px) - Small display text
 - **display-lg**: 6rem (96px) - Large display text
 
 ### Line Heights
+
 - **Tight**: 1.25 - Headings, titles
 - **Normal**: 1.5 - Body text
 - **Relaxed**: 1.75 - Large text, descriptions
@@ -91,18 +101,21 @@
 ## 🎭 Animations
 
 ### Duration
+
 - **Fast**: 150ms - Micro-interactions
 - **Normal**: 300ms - Standard transitions
 - **Slow**: 500ms - Page transitions
 - **Slower**: 700ms - Complex animations
 
 ### Easing Functions
+
 - **Default**: `cubic-bezier(0.4, 0, 0.2, 1)` - Standard transitions
 - **Bounce**: `cubic-bezier(0.68, -0.55, 0.265, 1.55)` - Playful animations
 - **Smooth**: `cubic-bezier(0.4, 0, 0.2, 1)` - Smooth transitions
 - **Sharp**: `cubic-bezier(0.4, 0, 0.6, 1)` - Sharp transitions
 
 ### Animation Classes
+
 - `animate-fade-in` - Fade in effect
 - `animate-slide-up` - Slide up from bottom
 - `animate-slide-down` - Slide down from top
@@ -116,6 +129,7 @@
 ## 🎨 Shadows
 
 ### Shadow Levels
+
 - **Soft**: Subtle shadows for cards and surfaces
 - **Medium**: Standard shadows for elevated elements
 - **Strong**: Prominent shadows for modals and overlays
@@ -123,6 +137,7 @@
 - **Inner**: Inset shadows for pressed states
 
 ### Shadow Values
+
 - `shadow-soft`: `0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)`
 - `shadow-medium`: `0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)`
 - `shadow-strong`: `0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1)`
@@ -132,6 +147,7 @@
 ## 🔲 Border Radius
 
 ### Radius Scale
+
 - **None**: 0px - Sharp corners
 - **Small**: 0.25rem (4px) - Subtle rounding
 - **Medium**: 0.5rem (8px) - Standard rounding
@@ -140,6 +156,7 @@
 - **Full**: 9999px - Fully rounded
 
 ### Usage Guidelines
+
 - **Small**: Buttons, inputs, small elements
 - **Medium**: Cards, panels, standard elements
 - **Large**: Modals, large cards, prominent elements
@@ -148,6 +165,7 @@
 ## 📱 Breakpoints
 
 ### Responsive Breakpoints
+
 - **xs**: 0px - Mobile (portrait)
 - **sm**: 640px - Mobile (landscape)
 - **md**: 768px - Tablet
@@ -158,6 +176,7 @@
 - **4xl**: 1800px - Ultra-wide screens
 
 ### Container Max Widths
+
 - **sm**: 640px
 - **md**: 768px
 - **lg**: 1024px
@@ -169,18 +188,21 @@
 ## 🎯 Component Guidelines
 
 ### Button Variants
+
 - **Primary**: Solid primary color with white text
 - **Secondary**: Outlined with primary color border
 - **Ghost**: Transparent with primary color text
 - **Destructive**: Red variant for dangerous actions
 
 ### Form Elements
+
 - **Input**: Standard text input with focus ring
 - **Select**: Dropdown with custom styling
 - **Checkbox**: Custom checkbox with animations
 - **Radio**: Custom radio button with animations
 
 ### Card Components
+
 - **Default**: Standard card with soft shadow
 - **Elevated**: Card with medium shadow
 - **Interactive**: Card with hover effects
@@ -189,37 +211,40 @@
 ## 🚀 Usage Examples
 
 ### Basic Button
+
 ```tsx
-<button className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200">
+<button className='px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200'>
   Click me
 </button>
 ```
 
 ### Card Component
+
 ```tsx
-<div className="p-6 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-200">
-  <h3 className="text-xl font-semibold text-foreground mb-2">Card Title</h3>
-  <p className="text-muted-foreground">Card content goes here</p>
+<div className='p-6 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-200'>
+  <h3 className='text-xl font-semibold text-foreground mb-2'>Card Title</h3>
+  <p className='text-muted-foreground'>Card content goes here</p>
 </div>
 ```
 
 ### Animated Element
+
 ```tsx
-<div className="animate-fade-in-up">
-  <h1 className="text-4xl font-bold text-foreground">Animated Heading</h1>
+<div className='animate-fade-in-up'>
+  <h1 className='text-4xl font-bold text-foreground'>Animated Heading</h1>
 </div>
 ```
 
 ### Responsive Layout
+
 ```tsx
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {/* Grid items */}
-</div>
+<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>{/* Grid items */}</div>
 ```
 
 ## 📋 Design Tokens
 
 ### CSS Custom Properties
+
 ```css
 :root {
   --background: 0 0% 100%;
@@ -242,6 +267,7 @@
 ```
 
 ### Dark Mode Support
+
 ```css
 .dark {
   --background: 222.2 84% 4.9%;
@@ -253,6 +279,7 @@
 ## 🔧 Customization
 
 ### Adding New Colors
+
 ```js
 // tailwind.config.js
 extend: {
@@ -267,6 +294,7 @@ extend: {
 ```
 
 ### Adding New Animations
+
 ```js
 // tailwind.config.js
 extend: {

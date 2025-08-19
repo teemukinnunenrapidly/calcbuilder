@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'CalcBuilder Pro - Advanced Calculator Builder Platform',
-  description: 'Build custom calculators, lead generation forms, and interactive business solutions with CalcBuilder Pro.',
+  description:
+    'Build custom calculators, lead generation forms, and interactive business solutions with CalcBuilder Pro.',
   keywords: ['calculator', 'builder', 'saas', 'lead generation', 'business tools'],
   authors: [{ name: 'Teemu Kinnunen' }],
   creator: 'Teemu Kinnunen',
@@ -20,14 +21,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'en': '/en',
-      'fi': '/fi',
-      'sv': '/sv',
+      en: '/en',
+      fi: '/fi',
+      sv: '/sv',
     },
   },
   openGraph: {
     title: 'CalcBuilder Pro - Advanced Calculator Builder Platform',
-    description: 'Build custom calculators, lead generation forms, and interactive business solutions.',
+    description:
+      'Build custom calculators, lead generation forms, and interactive business solutions.',
     url: 'https://calcbuilder.com',
     siteName: 'CalcBuilder Pro',
     images: [
@@ -44,7 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'CalcBuilder Pro - Advanced Calculator Builder Platform',
-    description: 'Build custom calculators, lead generation forms, and interactive business solutions.',
+    description:
+      'Build custom calculators, lead generation forms, and interactive business solutions.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -65,23 +68,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang='en' className={inter.className}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#2563eb" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel='icon' href='/favicon.ico' />
+        <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
+        <link rel='manifest' href='/manifest.json' />
+        <meta name='theme-color' content='#2563eb' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
       </head>
-      <body className="antialiased">
-        {children}
-      </body>
+      <body className='antialiased'>{children}</body>
     </html>
   );
 }

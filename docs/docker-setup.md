@@ -34,18 +34,18 @@ chmod +x scripts/docker-dev.sh
 
 ### Core Services
 
-| Service | Port | Description | Status |
-|---------|------|-------------|---------|
-| **frontend** | 3000 | Next.js application | ✅ Required |
-| **nginx** | 80, 443 | Reverse proxy & SSL termination | ✅ Required |
+| Service      | Port    | Description                     | Status      |
+| ------------ | ------- | ------------------------------- | ----------- |
+| **frontend** | 3000    | Next.js application             | ✅ Required |
+| **nginx**    | 80, 443 | Reverse proxy & SSL termination | ✅ Required |
 
 ### Optional Local Services
 
-| Service | Port | Description | Profile |
-|---------|------|-------------|---------|
-| **supabase-local** | 5432 | Local PostgreSQL database | `local-dev` |
-| **redis** | 6379 | Caching layer | `local-dev` |
-| **mailhog** | 1025, 8025 | Email testing (SMTP + Web UI) | `local-dev` |
+| Service            | Port       | Description                   | Profile     |
+| ------------------ | ---------- | ----------------------------- | ----------- |
+| **supabase-local** | 5432       | Local PostgreSQL database     | `local-dev` |
+| **redis**          | 6379       | Caching layer                 | `local-dev` |
+| **mailhog**        | 1025, 8025 | Email testing (SMTP + Web UI) | `local-dev` |
 
 ## 📁 File Structure
 
@@ -76,6 +76,7 @@ cp env.example .env
 ```
 
 **Required Variables:**
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
@@ -85,6 +86,7 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ### SSL Certificates
 
 The development script automatically generates self-signed SSL certificates:
+
 - **Certificate**: `nginx/ssl/localhost.crt`
 - **Private Key**: `nginx/ssl/localhost.key`
 
@@ -163,13 +165,13 @@ docker-compose up -d
 
 ### Port Mappings
 
-| Container | Internal Port | External Port | Purpose |
-|-----------|---------------|---------------|---------|
-| frontend | 3000 | 3000 | Direct access (development) |
-| nginx | 80, 443 | 80, 443 | Production access |
-| supabase-local | 5432 | 5432 | Database access |
-| redis | 6379 | 6379 | Cache access |
-| mailhog | 1025, 8025 | 1025, 8025 | Email testing |
+| Container      | Internal Port | External Port | Purpose                     |
+| -------------- | ------------- | ------------- | --------------------------- |
+| frontend       | 3000          | 3000          | Direct access (development) |
+| nginx          | 80, 443       | 80, 443       | Production access           |
+| supabase-local | 5432          | 5432          | Database access             |
+| redis          | 6379          | 6379          | Cache access                |
+| mailhog        | 1025, 8025    | 1025, 8025    | Email testing               |
 
 ## 🔒 Security Features
 

@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "next/core-web-vitals"
-  ],
+  "extends": ["next/core-web-vitals"],
   "rules": {
     // General rules
     "no-console": ["warn", { "allow": ["warn", "error"] }],
@@ -24,7 +22,13 @@
     "semi": ["error", "always"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    "max-len": ["warn", { "code": 100, "ignoreUrls": true, "ignoreStrings": true }]
+    "max-len": ["warn", { "code": 100, "ignoreUrls": true, "ignoreStrings": true }],
+
+    // React specific rules
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/display-name": "off"
   },
   "env": {
     "browser": true,
