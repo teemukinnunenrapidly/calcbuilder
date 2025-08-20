@@ -11,51 +11,33 @@ Configure Supabase Auth with email/password authentication. Set up Resend email 
 Test user registration with email verification - confirm email is received via Resend. Verify login functionality with email/password. Test password reset flow and confirm reset email delivery. Verify email templates render correctly with proper branding. Test email deliverability and check spam scores. Verify protected routes redirect unauthenticated users to login. Test token refresh mechanism. Verify role-based access control restricts access appropriately. Test user profile updates. Monitor Resend dashboard for email delivery success rates. Test email sending in both development (using Resend test mode) and production environments.
 
 # Subtasks:
-## 1. Setup Supabase Auth Configuration [pending]
+## 1. Configure Supabase Auth and Resend Integration [in-progress]
 ### Dependencies: None
-### Description: Configure Supabase Auth with email/password authentication and basic settings
+### Description: Set up Supabase Auth with email/password authentication and integrate Resend for email delivery
 ### Details:
-Initialize Supabase Auth in the project. Configure authentication settings for email/password. Set up basic user roles and permissions. Test basic authentication flow with Supabase dashboard.
+Create Supabase project and configure Auth settings for email/password authentication. Create Resend account and obtain API key. Configure Supabase to use Resend as the email provider through custom SMTP settings or Edge Functions. Set up DNS records for email sender domain verification. Test the connection between Supabase and Resend.
 
-## 2. Setup Resend Email Service Integration [pending]
-### Dependencies: None
-### Description: Configure Resend email service for transactional emails
+## 2. Create Authentication Email Templates [pending]
+### Dependencies: 4.1
+### Description: Design and implement email templates for all authentication flows
 ### Details:
-Create Resend account and obtain API key. Configure environment variables for Resend. Set up basic email sending functionality. Test email delivery in development environment. Configure email sender domain and verify DNS records.
+Create branded email templates for verification, password reset, and welcome emails. Implement templates in Resend or Supabase depending on the chosen integration method. Ensure templates include proper links back to the application with correct tokens. Add localization support for email content. Test email rendering across different email clients.
 
-## 3. Integrate Supabase Auth with Resend [pending]
-### Dependencies: None
-### Description: Connect Supabase Auth to use Resend for email delivery
+## 3. Implement Authentication Context and State Management [pending]
+### Dependencies: 4.1
+### Description: Create React context for authentication state management and JWT handling
 ### Details:
-Configure Supabase to use Resend as email provider through custom SMTP settings or Edge Functions. Set up email templates for authentication flows (verification, password reset, welcome emails). Test email delivery through Supabase Auth triggers.
+Create AuthContext and AuthProvider components to manage authentication state. Implement JWT token storage, validation, and refresh logic. Create hooks for accessing authentication state (useAuth). Implement session persistence across page refreshes. Add logout functionality with proper token cleanup. Create user profile data fetching and caching.
 
-## 4. Create React Authentication Context [pending]
-### Dependencies: None
-### Description: Implement authentication state management using React Context
+## 4. Build Authentication UI Components [pending]
+### Dependencies: 4.3
+### Description: Create login, registration, password reset, and email verification pages
 ### Details:
-Create React context for authentication state management. Implement user state, login/logout functions, and authentication status. Create custom hooks for authentication. Set up JWT token handling and refresh logic.
+Design and implement UI components for login form with email/password fields. Create registration form with validation. Build password reset request and confirmation pages. Implement email verification page that handles verification tokens. Add form validation using Zod. Create loading and error states for all authentication forms. Ensure all forms are accessible and responsive.
 
-## 5. Create Authentication UI Pages [pending]
-### Dependencies: None
-### Description: Build login, registration, password reset, and email verification pages
+## 5. Implement Protected Routes and Role-Based Access [pending]
+### Dependencies: 4.3, 4.4
+### Description: Create protected route system and role-based access control
 ### Details:
-Create responsive UI pages for authentication: login form, registration form, password reset form, and email verification page. Use shadcn/ui components for consistent design. Implement form validation with React Hook Form and Zod. Add proper error handling and success messages.
-
-## 6. Implement Protected Routes and Middleware [pending]
-### Dependencies: None
-### Description: Create route protection and authentication middleware
-### Details:
-Implement protected routes using Next.js middleware or React Router. Create authentication guards for protected pages. Set up redirect logic for unauthenticated users. Implement route-based access control.
-
-## 7. Implement User Profile Management [pending]
-### Dependencies: None
-### Description: Create user profile page and management functionality
-### Details:
-Create user profile page with editable fields. Implement profile update functionality. Add avatar/photo upload using Supabase Storage. Create user settings page for preferences. Implement profile data validation.
-
-## 8. Implement Role-Based Access Control (RBAC) [pending]
-### Dependencies: None
-### Description: Set up role-based access control for different user types
-### Details:
-Implement RBAC system for Platform Administrator and Client Administrator roles as defined in section 3 of the PRD. Create role-based component rendering. Implement permission-based UI elements. Set up role validation middleware. Test role-based access restrictions.
+Implement protected route components using React Router. Create role-based access control for different user types (Platform Administrator, Client Administrator). Implement redirect logic for unauthenticated or unauthorized users. Create permission checking utilities. Build user role management interface for platform administrators. Implement user profile management page with role information.
 

@@ -161,8 +161,8 @@
         "id": 13,
         "title": "Implement Lead Management System",
         "description": "Create the lead management system as specified in section 6.4.",
-        "details": "Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values. Create email functionality to contact leads directly from the panel using Resend email service. Implement basic CRM integration capabilities via webhooks.",
-        "testStrategy": "Test lead capture from calculator submissions. Verify leads appear in the management interface. Test searching and filtering leads. Verify lead export to CSV/Excel works correctly. Test lead detail view displays all information. Verify email functionality correctly sends messages to leads. Test webhook integration with sample CRM system.",
+        "details": "Implement lead capture functionality in calculators. Create lead management interface with searchable table. Implement lead filtering by date, calculator, and values. Create lead export functionality to CSV/Excel. Implement lead detail view with all form inputs and calculated values.",
+        "testStrategy": "Test lead capture from calculator submissions. Verify leads appear in the management interface. Test searching and filtering leads. Verify lead export to CSV/Excel works correctly. Test lead detail view displays all information.",
         "priority": "high",
         "dependencies": [5, 10],
         "status": "pending",
@@ -187,7 +187,7 @@
         "testStrategy": "Verify templates are correctly categorized by industry. Test template preview functionality. Verify new calculators can be created from templates. Test template customization to ensure all aspects can be modified. Verify templates include all necessary components: form fields, formulas, visual elements, and email templates.",
         "priority": "medium",
         "dependencies": [7, 8, 9, 10],
-        "status": "pending",
+        "status": "cancelled",
         "subtasks": []
       },
       {
@@ -371,7 +371,7 @@
     ],
     "metadata": {
       "created": "2025-08-19T12:44:20.651Z",
-      "updated": "2025-08-19T17:43:48.701Z",
+      "updated": "2025-08-20T11:36:34.472Z",
       "description": "Tasks for master context"
     }
   }
