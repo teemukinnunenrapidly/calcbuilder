@@ -80,7 +80,8 @@ temp/
 # Editor directories and files
 .vscode/
 .idea/
-.cursor/
+.cursor/*
+!.cursor/mcp.json.template
 *.swp
 *.swo
 *~

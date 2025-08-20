@@ -78,7 +78,25 @@ SMTP_PASS=your_smtp_password
 PLAUSIBLE_DOMAIN=your_domain
 ```
 
-### 4. Start development server
+### 4. Configure MCP Server (Optional)
+
+If you're using Cursor with Task Master AI, configure the MCP server:
+
+```bash
+# Copy the template configuration
+cp .cursor/mcp.json.template .cursor/mcp.json
+
+# Edit .cursor/mcp.json with your API keys
+# Never commit this file (it's in .gitignore)
+```
+
+**Required API Keys:**
+
+- `ANTHROPIC_API_KEY` - For Task Master AI functionality
+- `PERPLEXITY_API_KEY` - For research-backed task generation
+- `OPENAI_API_KEY` - Alternative AI provider
+
+### 5. Start development server
 
 ```bash
 npm run dev
