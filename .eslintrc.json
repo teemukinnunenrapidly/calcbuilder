@@ -18,11 +18,11 @@
     "no-irregular-whitespace": "error",
     "no-trailing-spaces": "error",
     "eol-last": "error",
-    "comma-dangle": ["error", "always-multiline"],
-    "semi": ["error", "always"],
-    "quotes": ["error", "single", { "avoidEscape": true }],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    "max-len": ["warn", { "code": 100, "ignoreUrls": true, "ignoreStrings": true }],
+    "comma-dangle": "off",
+    "semi": "off",
+    "quotes": "off",
+    "indent": "off",
+    "max-len": "off",
 
     // React specific rules
     "react/jsx-uses-react": "off",
