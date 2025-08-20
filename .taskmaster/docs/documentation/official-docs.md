@@ -12,6 +12,7 @@
 - **@dnd-kit**: https://docs.dndkit.com/
 - **Tremor**: https://www.tremor.so/docs
 - **react-i18next**: https://react.i18next.com/
+- **React Email**: https://react.email/docs/
 - **Plausible Analytics**: https://plausible.io/docs
 
 ## Backend & Database
