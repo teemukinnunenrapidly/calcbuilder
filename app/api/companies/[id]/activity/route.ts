@@ -129,13 +129,13 @@ export async function GET(
         activities.push({
           id: `invitation_${invitation.id}`,
           type: 'user_joined',
-          description: `Team invitation sent to ${invitation.email} for role: ${invitation.team_roles?.name || 'Member'}`,
+          description: `Team invitation sent to ${invitation.email} for role: ${(invitation as any).team_roles?.name || 'Member'}`,
           timestamp: invitation.created_at,
           user: 'Admin',
           metadata: {
             invitationId: invitation.id,
             email: invitation.email,
-            role: invitation.team_roles?.name
+            role: (invitation as any).team_roles?.name
           }
         });
       });
