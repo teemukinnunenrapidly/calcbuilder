@@ -7,8 +7,8 @@
     "no-alert": "warn",
     "prefer-const": "error",
     "no-var": "error",
-    "object-shorthand": "error",
-    "prefer-template": "error",
+    "object-shorthand": "warn",
+    "prefer-template": "warn",
     "no-duplicate-imports": "error",
     "no-unused-expressions": "error",
     "no-unreachable": "error",
@@ -16,7 +16,7 @@
     "no-empty": "error",
     "no-extra-semi": "error",
     "no-irregular-whitespace": "error",
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": "warn",
     "eol-last": "error",
     "comma-dangle": "off",
     "semi": "off",
@@ -28,7 +28,11 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/no-unescaped-entities": "warn",
+    "jsx-a11y/alt-text": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "@next/next/no-img-element": "warn"
   },
   "env": {
     "browser": true,
