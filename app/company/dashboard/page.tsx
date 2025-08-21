@@ -102,7 +102,7 @@ export default function CompanyDashboardPage() {
           conversionRate: 23.5,
           averageSessionDuration: 4.2,
           monthlyGrowth: 15.3,
-          domainVerificationStatus: company?.domain_verification_status || 'pending',
+          domainVerificationStatus: (company?.domain_verification_status === 'none' ? 'pending' : company?.domain_verification_status) || 'pending',
           lastActivity: new Date().toISOString(),
           storageUsage: 2048576, // 2MB
           storageLimit: 52428800, // 50MB
