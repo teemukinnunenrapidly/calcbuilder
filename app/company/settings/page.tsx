@@ -178,7 +178,7 @@ export default function CompanySettingsPage() {
       business_settings: {
         ...prev.business_settings,
         billing_address: {
-          ...prev.business_settings.billing_address,
+          ...(prev.business_settings?.billing_address || {}),
           [key]: value,
         },
       },
