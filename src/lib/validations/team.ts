@@ -31,6 +31,7 @@ export const createTeamInvitationSchema = z.object({
   invited_by: z.string().uuid(),
   status: z.enum(['pending', 'accepted', 'expired', 'cancelled']).default('pending'),
   expires_at: z.string().datetime().optional(), // Will be set to 7 days from now if not provided
+  accepted_at: z.string().datetime().optional(),
 });
 
 export const updateTeamInvitationSchema = createTeamInvitationSchema.partial().omit({ company_id: true, email: true });
