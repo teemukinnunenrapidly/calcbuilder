@@ -100,7 +100,7 @@ export async function GET(
 
     let storageUsage = 0;
     if (!storageError && storageData) {
-      storageUsage = storageData.reduce((total, file) => total + (file.metadata?.size || 0), 0);
+      storageUsage = storageData.reduce((total, file) => total + ((file.metadata as any)?.['size'] || 0), 0);
     }
 
     // Storage limit (50MB)
