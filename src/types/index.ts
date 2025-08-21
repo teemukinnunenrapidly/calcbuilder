@@ -21,6 +21,12 @@ export interface Company extends BaseEntity {
   settings: CompanySettings;
   subscription_tier: SubscriptionTier;
   subscription_status: SubscriptionStatus;
+  domain_verification_status?: 'none' | 'pending' | 'verified' | 'failed' | 'expired';
+  domain_verification_id?: string;
+  domain_verified_at?: string;
+  custom_domain_enabled?: boolean;
+  subdomain_enabled?: boolean;
+  white_label_enabled?: boolean;
 }
 
 export interface BrandColors {
@@ -34,16 +40,89 @@ export interface BrandColors {
 }
 
 export interface CompanySettings {
-  timezone: string;
-  locale: string;
-  currency: string;
-  date_format: string;
-  number_format: string;
-  features: Record<string, boolean>;
+  timezone?: string;
+  locale?: string;
+  currency?: string;
+  date_format?: string;
+  number_format?: string;
+  features?: Record<string, boolean>;
+  notification_settings?: {
+    email_notifications?: boolean;
+    push_notifications?: boolean;
+    marketing_emails?: boolean;
+    security_alerts?: boolean;
+  };
+  business_hours?: {
+    monday?: BusinessDay;
+    tuesday?: BusinessDay;
+    wednesday?: BusinessDay;
+    thursday?: BusinessDay;
+    friday?: BusinessDay;
+    saturday?: BusinessDay;
+    sunday?: BusinessDay;
+  };
+}
+
+export interface BusinessDay {
+  enabled: boolean;
+  start?: string;
+  end?: string;
 }
 
 export type SubscriptionTier = 'free' | 'starter' | 'professional' | 'enterprise';
 export type SubscriptionStatus = 'active' | 'inactive' | 'suspended' | 'cancelled';
+
+// Team Management Types
+export interface TeamRole extends BaseEntity {
+  company_id: string;
+  name: string;
+  description?: string;
+  permissions: string[];
+  is_system_role: boolean;
+}
+
+export interface TeamMember extends BaseEntity {
+  company_id: string;
+  user_id: string;
+  role_id: string;
+  status: TeamMemberStatus;
+  permissions: string[];
+  invited_by: string;
+  invited_at: string;
+  joined_at?: string;
+  last_active_at?: string;
+  // Extended fields for UI
+  user?: User;
+  role?: TeamRole;
+  invited_by_user?: User;
+}
+
+export interface TeamInvitation extends BaseEntity {
+  company_id: string;
+  email: string;
+  role_id: string;
+  invited_by: string;
+  status: InvitationStatus;
+  invitation_token: string;
+  expires_at: string;
+  accepted_at?: string;
+  // Extended fields for UI
+  role?: TeamRole;
+  invited_by_user?: User;
+}
+
+export interface TeamPermission extends BaseEntity {
+  name: string;
+  description?: string;
+  category: PermissionCategory;
+  resource: string;
+  action: PermissionAction;
+}
+
+export type TeamMemberStatus = 'active' | 'inactive' | 'pending' | 'suspended';
+export type InvitationStatus = 'pending' | 'accepted' | 'expired' | 'cancelled';
+export type PermissionCategory = 'company' | 'calculators' | 'leads' | 'analytics' | 'billing' | 'team';
+export type PermissionAction = 'create' | 'read' | 'update' | 'delete' | 'manage';
 
 export interface User extends BaseEntity {
   company_id: string;

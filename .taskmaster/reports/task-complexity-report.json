@@ -1,0 +1,165 @@
+{
+	"meta": {
+		"generatedAt": "2025-08-21T08:55:02.206Z",
+		"tasksAnalyzed": 19,
+		"totalTasks": 25,
+		"analysisCount": 19,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 19,
+			"taskTitle": "Implement Security Features",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the security implementation into: frontend validation (Zod), backend validation (Zod), XSS protection (DOMPurify integration), SQL injection prevention (parameterized queries), API rate limiting, CSRF protection, Nginx security headers configuration, and audit logging. For each, specify technology, integration points, and test coverage.",
+			"reasoning": "This task covers multiple critical security domains (validation, XSS, SQL injection, rate limiting, CSRF, headers, audit logging) across both frontend and backend. Each area requires specialized implementation and testing, often with different libraries and frameworks. Security best practices demand thorough separation and independent verification of each concern, justifying a high complexity and granular subtask breakdown."
+		},
+		{
+			"taskId": 18,
+			"taskTitle": "Implement GDPR Compliance Features",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Expand into: cookie consent management, data access request handling, data deletion (right to be forgotten), data portability (export), automatic data anonymization, privacy policy generator, and data processing agreement templates. For each, define user flows, backend logic, and compliance checks.",
+			"reasoning": "GDPR compliance is multifaceted, requiring legal, UX, and technical solutions. Each feature (consent, access, deletion, portability, anonymization, policy generation, agreements) is a distinct workflow with regulatory requirements and auditability, necessitating clear separation and careful implementation."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Implement Multi-Language Support",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Divide into: react-i18next configuration, translation file creation for each language, language switcher component, multi-language calculator content management, locale-based number/date formatting, and translation management interface. Specify integration points and fallback strategies.",
+			"reasoning": "Internationalization involves both infrastructure (i18n setup, formatting) and content management (translations, UI). Each supported language and content type increases complexity, and best practices require modularization and robust fallback mechanisms."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Analytics Dashboard",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into: Plausible Analytics integration, dashboard metrics aggregation, lead conversion analytics, chart/graph visualization components, date range filtering, and analytics report export. For each, define data sources, UI components, and performance considerations.",
+			"reasoning": "Analytics dashboards require integration with external services, real-time data aggregation, and complex UI visualizations. Each metric and visualization type is a separate concern, and filtering/export features add further complexity."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implement Visual Formula Editor",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down into: drag-and-drop formula components, visual math operation rendering, variable picker, function components (math, conditionals, etc.), real-time formula preview, formula validation, and shortcode management. For each, specify UI/UX and data model requirements.",
+			"reasoning": "A visual formula editor is highly interactive, requiring custom drag-and-drop, dynamic rendering, validation, and persistence. Each function type and UI element is a distinct technical challenge, and real-time feedback increases complexity."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Implement Email Template Builder",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into: WYSIWYG editor with drag-and-drop, shortcode insertion, conditional content blocks, template management system, email preview (multi-client), and Resend integration. For each, define UI, data model, and integration points.",
+			"reasoning": "Building a WYSIWYG email editor with dynamic content and third-party integration is complex. Each feature (editor, shortcodes, conditionals, preview, management, sending) is a separate technical concern, requiring modular implementation."
+		},
+		{
+			"taskId": 16,
+			"taskTitle": "Implement WordPress Plugin",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down into: plugin scaffolding, shortcode support, Gutenberg block, display modes, settings page, calculator synchronization, and styling options. For each, specify WordPress APIs, UI, and synchronization logic.",
+			"reasoning": "A WordPress plugin with embedding, multiple display modes, and synchronization involves both PHP and JavaScript, integration with WordPress APIs, and robust configuration management. Each feature is a distinct submodule."
+		},
+		{
+			"taskId": 21,
+			"taskTitle": "Implement Onboarding Flow",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into: onboarding wizard, interactive tutorials, contextual help, template selection, progress tracking, and sample data generation. For each, define user journey, UI components, and analytics hooks.",
+			"reasoning": "Onboarding flows require coordinated UI/UX, state management, and analytics. Each step (wizard, tutorials, help, templates, progress, data) is a separate workflow, and best practices recommend modular, testable components."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implement Company/Client Management",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down into: company CRUD operations, profile page with branding, domain verification, settings page, team member management, company dashboard, and asset storage integration. For each, specify API, UI, and access control requirements.",
+			"reasoning": "Company management spans CRUD, branding, domain verification, settings, team management, dashboards, and asset storage. Each is a substantial feature with its own data model, UI, and security considerations."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Implement Lead Management System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Expand into: lead capture integration, management interface, filtering/search, export functionality, and lead detail view. For each, define data flow, UI, and export logic.",
+			"reasoning": "Lead management involves data capture, complex UI for management, filtering, export, and detail views. Each is a distinct workflow, and best practices require clear separation for maintainability and scalability."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Create Admin Dashboard UI",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on create admin dashboard ui.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement Drag-and-Drop Form Builder",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement drag-and-drop form builder.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement Visual Elements Management",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement visual elements management.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implement Calculator Preview and Testing Environment",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement calculator preview and testing environment.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 17,
+			"taskTitle": "Implement Embedding API and JavaScript SDK",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement embedding api and javascript sdk.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 20,
+			"taskTitle": "Implement Billing and Subscription Management",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement billing and subscription management.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 22,
+			"taskTitle": "Implement Documentation and Help Center",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement documentation and help center.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 23,
+			"taskTitle": "Implement Support System",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement support system.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 25,
+			"taskTitle": "Implement CI/CD Pipeline",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement ci/cd pipeline.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		}
+	]
+}
