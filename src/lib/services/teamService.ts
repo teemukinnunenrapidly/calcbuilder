@@ -330,6 +330,7 @@ export class TeamService {
         role_id: invitation.role_id,
         status: 'active',
         invited_by: invitation.invited_by,
+        permissions: [],
       });
 
       // Update invitation status
