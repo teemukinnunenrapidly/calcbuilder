@@ -110,8 +110,8 @@ export async function GET(
             id: file.id,
             name: file.name,
             type: assetType,
-            size: file.metadata?.size || 0,
-            mime_type: file.metadata?.mimetype || '',
+            size: (file.metadata as any)?.['size'] || 0,
+            mime_type: (file.metadata as any)?.['mimetype'] || '',
             created_at: file.created_at,
             updated_at: file.updated_at,
             url: supabase.storage
