@@ -379,7 +379,7 @@ export class TeamService {
       if (error || !data) return [];
 
       const userPermissions = data.permissions || [];
-      const rolePermissions = data.role?.permissions || [];
+      const rolePermissions = data.role?.[0]?.permissions || [];
 
       return [...new Set([...userPermissions, ...rolePermissions])];
     } catch (error) {
