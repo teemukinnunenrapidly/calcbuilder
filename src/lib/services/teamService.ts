@@ -3,7 +3,9 @@ import {
   TeamRole,
   TeamMember,
   TeamInvitation,
-  TeamPermission,
+  TeamPermission
+} from '../../types';
+import {
   TeamMemberSearch,
   TeamInvitationSearch,
   CreateTeamRole,
@@ -13,7 +15,7 @@ import {
   CreateTeamInvitation,
   UpdateTeamInvitation,
   AcceptInvitation
-} from '../../types';
+} from '../validations/team';
 import {
   createTeamRoleSchema,
   updateTeamRoleSchema,
