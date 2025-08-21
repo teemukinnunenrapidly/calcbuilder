@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 
+// Enable ISR for better performance - revalidate every hour
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'CalcBuilder Pro - Advanced Calculator Builder Platform',
   description: 'Professional calculator builder platform for businesses and developers',

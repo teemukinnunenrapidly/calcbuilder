@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "env": {
+    "NODE_ENV": "production",
+    "VERCEL_REGION": "fra1"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "HUSKY": "0"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-Region",
+          "value": "EU-Frankfurt"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=600"
+        },
+        {
+          "key": "X-Region",
+          "value": "EU-Frankfurt"
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { ShadcnShowcase } from '../../src/components/ui/shadcn-showcase';
 import CDNStatusCheck from '../../src/components/analytics/CDNStatusCheck';
 import GDPRCompliance from '../../src/components/compliance/GDPRCompliance';
 import RegionalPerformance from '../../src/components/compliance/RegionalPerformance';
+import DeploymentStatus from '../../src/components/deployment/DeploymentStatus';
 
 // Enable ISR for better performance - revalidate every 30 minutes
 export const revalidate = 1800;
@@ -45,10 +46,15 @@ export default function TestPage() {
         {/* Infrastructure Status */}
         <section>
           <h2 className='text-2xl font-semibold text-foreground mb-6'>Infrastructure Status</h2>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
-            <CDNStatusCheck />
-            <GDPRCompliance />
-            <RegionalPerformance />
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+            <div className='space-y-6'>
+              <CDNStatusCheck />
+              <GDPRCompliance />
+            </div>
+            <div className='space-y-6'>
+              <RegionalPerformance />
+              <DeploymentStatus />
+            </div>
           </div>
         </section>
       </div>

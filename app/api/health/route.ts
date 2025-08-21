@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Use Edge Runtime for faster response times (only in production)
+export const runtime = process.env.NODE_ENV === 'production' ? 'edge' : 'nodejs';
+
 export async function GET() {
   try {
     // Basic health check - you can add more sophisticated checks here

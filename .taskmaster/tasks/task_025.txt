@@ -5,7 +5,7 @@
 # Priority: medium
 # Description: Create continuous integration and deployment pipeline for automated testing and deployment.
 # Details:
-Set up GitHub Actions or similar CI/CD service. Implement automated testing for frontend and backend. Create build pipeline for production assets. Implement automated deployment to staging environment. Create production deployment process with approval step. Implement database migration system. Set up automated performance and accessibility testing in CI pipeline.
+Set up GitHub Actions or similar CI/CD service. Implement automated testing for frontend and backend. Create build pipeline for production assets. Implement automated deployment to staging environment using Vercel preview deployments. Create production deployment process with approval step for Vercel. Implement database migration system for Supabase. Set up automated performance and accessibility testing in CI pipeline.
 
 # Test Strategy:
-Verify CI pipeline runs tests on pull requests. Test build pipeline creates optimized production assets. Verify staging deployment works automatically on merge to development branch. Test production deployment process with approval step. Verify database migrations run correctly during deployment. Test performance and accessibility checks in CI pipeline.
+Verify CI pipeline runs tests on pull requests. Test build pipeline creates optimized production assets. Verify staging deployment works automatically on merge to development branch using Vercel preview deployments. Test production deployment process with approval step. Verify database migrations run correctly during deployment. Test performance and accessibility checks in CI pipeline.

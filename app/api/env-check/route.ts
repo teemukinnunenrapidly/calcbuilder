@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Use Edge Runtime for faster response times (only in production)
+export const runtime = process.env.NODE_ENV === 'production' ? 'edge' : 'nodejs';
+
 export async function GET() {
   return NextResponse.json({
     supabaseUrl: process.env['NEXT_PUBLIC_SUPABASE_URL'] || null,

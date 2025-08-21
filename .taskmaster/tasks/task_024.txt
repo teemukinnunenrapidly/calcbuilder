@@ -3,9 +3,41 @@
 # Status: pending
 # Dependencies: 3
 # Priority: high
-# Description: Set up production deployment infrastructure on Vercel for Next.js application with Supabase backend.
+# Description: Set up production deployment infrastructure on Vercel with Next.js optimizations and EU deployment for GDPR compliance.
 # Details:
-Create Vercel project and connect GitHub repository for automatic deployments. Configure production environment variables including Supabase credentials, Resend API key, and other service keys. Set up custom domain with proper DNS configuration. Configure deployment settings for Next.js with ISR (Incremental Static Regeneration) for calculator pages. Set up production and preview branches (main for production, develop for staging). Configure Vercel Analytics and Web Vitals monitoring. Set up Edge Functions for API routes optimization. Configure regional deployment to EU (Frankfurt/Paris) for GDPR compliance. Set up Vercel KV for session storage if needed. Configure build optimization with proper caching strategies. Set up environment variable management for different environments (development, preview, production). Configure Vercel Firewall rules for DDoS protection. Implement proper error pages (404, 500). Set up Vercel Speed Insights. Configure OG image generation for social sharing. Set up webhook notifications for deployment status to Slack/Discord.
+Create Vercel project and integrate with GitHub repository. Configure Next.js-specific optimizations including Incremental Static Regeneration (ISR) and Edge Functions. Set up Vercel Analytics for monitoring instead of custom solutions. Use Vercel's built-in SSL certificates and global CDN. Configure EU deployment region for GDPR compliance. Set up preview deployments for staging and testing. Keep Supabase as external database service. Configure environment variables and secrets management in Vercel dashboard.
 
 # Test Strategy:
-Verify GitHub integration triggers automatic deployments on push to main branch. Test environment variables are correctly set and accessible in production. Verify custom domain resolves correctly with SSL. Test ISR works for calculator pages with proper revalidation. Confirm preview deployments work for pull requests. Verify Analytics and Web Vitals data collection. Test Edge Functions respond with low latency from EU regions. Verify GDPR-compliant data processing in EU region. Test error pages display correctly. Verify build caching reduces deployment time. Test rollback functionality works. Confirm webhook notifications fire on deployment events. Test API rate limiting works correctly. Verify OG images generate properly for social shares.
+Verify Vercel project creation and GitHub integration. Test Next.js optimizations (ISR, Edge Functions) work correctly in production. Verify Vercel Analytics provides proper monitoring data. Test SSL certificates and CDN functionality. Verify EU deployment region is correctly configured. Test preview deployments work for staging. Verify environment variables are properly set in production. Test database connectivity with Supabase from Vercel deployment.
+
+# Subtasks:
+## 1. Create and Configure Vercel Project with GitHub Integration [pending]
+### Dependencies: None
+### Description: Set up a new Vercel project and connect it to the appropriate GitHub repository to enable automated deployments.
+### Details:
+Use the Vercel dashboard to create a project and link it to the GitHub repository. Ensure that the repository is correctly detected and that Vercel can trigger deployments on push events.
+
+## 2. Configure Next.js Optimizations (ISR and Edge Functions) [pending]
+### Dependencies: 24.1
+### Description: Enable and configure Next.js-specific optimizations, including Incremental Static Regeneration (ISR) and Edge Functions, for improved performance and scalability.
+### Details:
+Adjust Next.js configuration files and Vercel project settings to enable ISR and Edge Functions. Ensure that the build command and framework preset are correctly set for Next.js.
+
+## 3. Set Up Vercel Analytics, SSL, and Global CDN [pending]
+### Dependencies: 24.1
+### Description: Configure Vercel Analytics for monitoring, enable built-in SSL certificates, and ensure the use of Vercel's global CDN for secure and performant delivery.
+### Details:
+Activate Vercel Analytics in the project dashboard. Confirm that SSL is enabled for all domains and that the global CDN is active for asset delivery.
+
+## 4. Configure EU Deployment Region and Environment Variables [pending]
+### Dependencies: 24.1
+### Description: Set the deployment region to the EU for GDPR compliance and configure all necessary environment variables and secrets in the Vercel dashboard.
+### Details:
+Use the Vercel dashboard or CLI to specify the EU region for serverless functions and edge deployments. Add required environment variables and secrets for production and preview environments.
+
+## 5. Enable Preview Deployments and Integrate Supabase [pending]
+### Dependencies: 24.1
+### Description: Set up preview deployments for staging and testing, and ensure Supabase remains configured as the external database service.
+### Details:
+Configure branch-based preview deployments in Vercel. Ensure Supabase connection details are set via environment variables and test connectivity from both preview and production environments.
+
