@@ -51,6 +51,8 @@ export interface CompanySettings {
     push_notifications?: boolean;
     marketing_emails?: boolean;
     security_alerts?: boolean;
+    weekly_reports?: boolean;
+    monthly_summaries?: boolean;
   };
   business_hours?: {
     monday?: BusinessDay;
