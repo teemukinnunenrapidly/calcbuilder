@@ -404,7 +404,7 @@ export default function CompanyAssetsPage() {
               ) : (
                 <div className="flex flex-col items-center justify-center text-gray-500">
                   <FileText className="h-12 w-12 mb-2" />
-                  <span className="text-sm">{asset.mime_type.split('/')[1].toUpperCase()}</span>
+                  <span className="text-sm">{asset.mime_type?.split('/')[1]?.toUpperCase() || 'FILE'}</span>
                 </div>
               )}
               
