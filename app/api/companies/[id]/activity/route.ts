@@ -77,12 +77,12 @@ export async function GET(
         activities.push({
           id: `member_${member.id}`,
           type: 'user_joined',
-          description: `New team member joined with role: ${member.team_roles?.name || 'Member'}`,
+          description: `New team member joined with role: ${(member as any).team_roles?.name || 'Member'}`,
           timestamp: member.created_at,
           user: 'System',
           metadata: {
             memberId: member.id,
-            role: member.team_roles?.name
+            role: (member as any).team_roles?.name
           }
         });
       });
