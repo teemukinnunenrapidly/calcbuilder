@@ -68,7 +68,7 @@ export async function GET(
     }
 
     // List assets from Supabase Storage
-    let assets = [];
+    let assets: any[] = [];
     
     if (type && ASSET_TYPES[type as keyof typeof ASSET_TYPES]) {
       // Get assets of specific type
