@@ -56,7 +56,7 @@ export async function GET(
 
     // For now, we'll generate activity based on existing data
     // In the future, this should come from a dedicated activity/audit log table
-    const activities = [];
+    const activities: any[] = [];
 
     // Get recent team member additions
     const { data: recentMembers, error: membersError } = await supabase

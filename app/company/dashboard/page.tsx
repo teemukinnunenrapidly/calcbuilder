@@ -257,7 +257,7 @@ export default function CompanyDashboardPage() {
       {/* Header */}
       <div className='mb-8'>
         <h1 className='text-3xl font-bold text-gray-900'>Company Dashboard</h1>
-        <p className='text-gray-600 mt-2'>Overview of your company's performance and activity</p>
+        <p className='text-gray-600 mt-2'>Overview of your company&apos;s performance and activity</p>
       </div>
 
       {/* Time Range Selector */}

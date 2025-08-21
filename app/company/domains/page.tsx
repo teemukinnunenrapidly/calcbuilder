@@ -261,7 +261,7 @@ export default function CompanyDomainsPage() {
       <div className='mb-8'>
         <h1 className='text-4xl font-bold text-foreground mb-4'>Domain Management</h1>
         <p className='text-xl text-muted-foreground'>
-          Manage your company's domain settings and white-labeling configuration
+          Manage your company&apos;s domain settings and white-labeling configuration
         </p>
       </div>
 
@@ -509,7 +509,7 @@ export default function CompanyDomainsPage() {
               ))}
               <p className='text-muted-foreground'>
                 After adding these records, wait a few minutes for DNS propagation and then click
-                "Verify Domain".
+                &ldquo;Verify Domain&rdquo;.
               </p>
               {verification.expires_at && (
                 <p className='text-amber-600 font-medium'>

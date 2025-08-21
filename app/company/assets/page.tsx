@@ -240,7 +240,7 @@ export default function CompanyAssetsPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Company Assets</h1>
         <p className="text-gray-600 mt-2">
-          Manage your company's digital assets including logos, images, and documents
+          Manage your company&apos;s digital assets including logos, images, and documents
         </p>
       </div>
 
@@ -286,7 +286,7 @@ export default function CompanyAssetsPage() {
               </Button>
             </CardTitle>
             <CardDescription>
-              Upload a new asset to your company's asset library
+              Upload a new asset to your company&apos;s asset library
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -501,7 +501,7 @@ export default function CompanyAssetsPage() {
             Storage Information
           </CardTitle>
           <CardDescription>
-            Monitor your company's storage usage and limits
+            Monitor your company&apos;s storage usage and limits
           </CardDescription>
         </CardHeader>
         <CardContent>
