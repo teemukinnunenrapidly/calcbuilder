@@ -14,9 +14,7 @@ import {
   UpdateTeamMember,
   CreateTeamInvitation,
   UpdateTeamInvitation,
-  AcceptInvitation
-} from '../validations/team';
-import {
+  AcceptInvitation,
   createTeamRoleSchema,
   updateTeamRoleSchema,
   createTeamMemberSchema,
