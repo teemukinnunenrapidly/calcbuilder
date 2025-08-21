@@ -63,6 +63,18 @@ export interface CompanySettings {
     saturday?: BusinessDay;
     sunday?: BusinessDay;
   };
+  business_settings?: {
+    company_size?: string;
+    industry?: string;
+    tax_id?: string;
+    billing_address?: {
+      street?: string;
+      city?: string;
+      state?: string;
+      postal_code?: string;
+      country?: string;
+    };
+  };
 }
 
 export interface BusinessDay {
